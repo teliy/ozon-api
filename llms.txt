@@ -1,0 +1,77 @@
+# Ozon Seller API (2.1) — Documentation
+
+> Full API reference for Ozon Seller API version 2.1: 482 endpoints across products, prices, actions, warehouses, FBO/FBS/rFBS postings, chats, reports, analytics and more. Source: official docs.ozon.ru PDF (2026-09-28), converted to Markdown.
+
+Base URL: `https://api-seller.ozon.ru`
+Auth headers: `Client-Id` and `Api-Key` (required for all methods).
+All request/response bodies are JSON.
+
+## Files
+
+- [docs/00-guides.md](docs/00-guides.md): Getting started, authorization, rate limits, workflows
+- [docs/01-api-key.md](docs/01-api-key.md): Информация по API-ключу (1 endpoint)
+- [docs/02-seller-info.md](docs/02-seller-info.md): Информация по кабинету продавца (2 endpoints)
+- [docs/03-attributes.md](docs/03-attributes.md): Атрибуты и характеристики Ozon (5 endpoints)
+- [docs/04-products.md](docs/04-products.md): Загрузка и обновление товаров (21 endpoints)
+- [docs/05-barcodes.md](docs/05-barcodes.md): Штрихкоды товаров (2 endpoints)
+- [docs/06-prices-stocks.md](docs/06-prices-stocks.md): Цены и остатки товаров (11 endpoints)
+- [docs/07-actions-ozon.md](docs/07-actions-ozon.md): Акции Ozon (16 endpoints)
+- [docs/08-pricing-strategies.md](docs/08-pricing-strategies.md): Стратегии ценообразования (12 endpoints)
+- [docs/09-certificates-brands.md](docs/09-certificates-brands.md): Сертификаты брендов (1 endpoint)
+- [docs/10-quality-certificates.md](docs/10-quality-certificates.md): Сертификаты качества (15 endpoints)
+- [docs/11-warehouses-fbs-rfbs.md](docs/11-warehouses-fbs-rfbs.md): Работа со складами FBS и rFBS (10 endpoints)
+- [docs/12-warehouses-fbs.md](docs/12-warehouses-fbs.md): Создание FBS-складов и управление ими (17 endpoints)
+- [docs/13-warehouses-rfbs-express.md](docs/13-warehouses-rfbs-express.md): Создание складов rFBS Express и управление ими (7 endpoints)
+- [docs/14-postings-fbs-rfbs.md](docs/14-postings-fbs-rfbs.md): Обработка заказов FBS и rFBS (25 endpoints)
+- [docs/15-polygons.md](docs/15-polygons.md): Полигоны (7 endpoints)
+- [docs/16-fbo-delivery.md](docs/16-fbo-delivery.md): Доставка FBO (16 endpoints)
+- [docs/17-fbo-supplies.md](docs/17-fbo-supplies.md): Создание и управление заявками на поставку FBO (25 endpoints)
+- [docs/18-fbo-warehouses.md](docs/18-fbo-warehouses.md): Склады FBO (1 endpoint)
+- [docs/19-marking-codes.md](docs/19-marking-codes.md): Управление кодами маркировки и сборкой заказов для FBS/rFBS (7 endpoints)
+- [docs/20-fbs-delivery.md](docs/20-fbs-delivery.md): Доставка FBS (29 endpoints)
+- [docs/21-rfbs-delivery.md](docs/21-rfbs-delivery.md): Доставка rFBS (7 endpoints)
+- [docs/22-passes.md](docs/22-passes.md): Пропуски (7 endpoints)
+- [docs/23-returns-fbo-fbs.md](docs/23-returns-fbo-fbs.md): Возвраты товаров FBO и FBS (4 endpoints)
+- [docs/24-returns-rfbs.md](docs/24-returns-rfbs.md): Возвраты товаров rFBS (3 endpoints)
+- [docs/25-return-shipments.md](docs/25-return-shipments.md): Возвратные отгрузки (8 endpoints)
+- [docs/26-order-cancellations.md](docs/26-order-cancellations.md): Отмены заказов (3 endpoints)
+- [docs/27-chats.md](docs/27-chats.md): Чаты с покупателями (3 endpoints)
+- [docs/28-invoices.md](docs/28-invoices.md): Накладные (4 endpoints)
+- [docs/29-reports.md](docs/29-reports.md): Отчёты (11 endpoints)
+- [docs/30-analytics.md](docs/30-analytics.md): Аналитические отчёты (3 endpoints)
+- [docs/31-finance-reports.md](docs/31-finance-reports.md): Финансовые отчёты (10 endpoints)
+- [docs/32-receipts.md](docs/32-receipts.md): Чеки (3 endpoints)
+- [docs/33-seller-rating.md](docs/33-seller-rating.md): Рейтинг продавца (4 endpoints)
+- [docs/34-digital-goods.md](docs/34-digital-goods.md): Работа с цифровыми товарами (3 endpoints)
+- [docs/35-reviews.md](docs/35-reviews.md): Работа с отзывами (12 endpoints)
+- [docs/36-questions-answers.md](docs/36-questions-answers.md): Работа с вопросами и ответами (8 endpoints)
+- [docs/37-beta-methods.md](docs/37-beta-methods.md): Бета-методы
+- [docs/38-misc-methods.md](docs/38-misc-methods.md): Прочие методы (27 endpoints)
+- [docs/39-rabota-s-kvantami.md](docs/39-rabota-s-kvantami.md): Работа с квантами
+- [docs/40-seller-promotions.md](docs/40-seller-promotions.md): Акции продавца (18 endpoints)
+- [docs/41-actions-ozon-2.md](docs/41-actions-ozon-2.md): Акции Ozon (4 endpoints)
+- [docs/42-push-notifications.md](docs/42-push-notifications.md): Работа с пуш-уведомлениями (7 endpoints)
+- [docs/43-fbo-cargoplaces.md](docs/43-fbo-cargoplaces.md): Работа с транспортными грузоместами FBO (14 endpoints)
+- [docs/44-fbp-drafts.md](docs/44-fbp-drafts.md): Работа с FBP-черновиками (3 endpoints)
+- [docs/45-fbp-drafts-direct.md](docs/45-fbp-drafts-direct.md): Работа с FBP-черновиками с доставкой direct (10 endpoints)
+- [docs/46-fbp-drafts-dropoff.md](docs/46-fbp-drafts-dropoff.md): Работа с FBP-черновиками c доставкой drop-off (8 endpoints)
+- [docs/47-fbp-drafts-pickup.md](docs/47-fbp-drafts-pickup.md): Работа с FBP-черновиками с доставкой pick-up (5 endpoints)
+- [docs/48-fbp-supplies-direct.md](docs/48-fbp-supplies-direct.md): Работа с FBP-поставками с доставкой direct (5 endpoints)
+- [docs/49-fbp-supplies-dropoff.md](docs/49-fbp-supplies-dropoff.md): Работа с FBP-поставками с доставкой drop-off (3 endpoints)
+- [docs/50-fbp-supplies-pickup.md](docs/50-fbp-supplies-pickup.md): Работа с FBP-поставками с доставкой pick-up (2 endpoints)
+- [docs/51-fbp-supply.md](docs/51-fbp-supply.md): Работа с созданной поставкой FBP (11 endpoints)
+- [docs/52-fbs-cargoplaces.md](docs/52-fbs-cargoplaces.md): Работа с грузоместами FBS (13 endpoints)
+- [docs/53-fbo-acts.md](docs/53-fbo-acts.md): Работа с актами FBO (4 endpoints)
+- [docs/54-premium.md](docs/54-premium.md): Premium-методы (10 endpoints)
+- [docs/55-ozon-delivery.md](docs/55-ozon-delivery.md): Ozon Доставка
+- [docs/56-cancel-reasons.md](docs/56-cancel-reasons.md): Причины отмены (3 endpoints)
+- [docs/57-delivery-info.md](docs/57-delivery-info.md): Доставка (5 endpoints)
+- [docs/58-orders.md](docs/58-orders.md): Заказы (4 endpoints)
+- [docs/59-postings-info.md](docs/59-postings-info.md): Отправления (3 endpoints)
+- [docs/60-common-errors.md](docs/60-common-errors.md): Частые ошибки
+- [docs/99-notifications.md](docs/99-notifications.md): Push notifications setup, retry policy, notification types
+
+## Notes
+
+- Full single-file version: [llms-full.txt](llms-full.txt)
+- Quick endpoint index: [index.md](index.md)
