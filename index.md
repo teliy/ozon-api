@@ -4,7 +4,7 @@
 
 ## Информация по API-ключу
 
-Файл: [`docs/01-api-key.md`](01-api-key.md)
+Файл: [`docs/01-api-key.md`](docs/01-api-key.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -12,7 +12,7 @@
 
 ## Информация по кабинету продавца
 
-Файл: [`docs/02-seller-info.md`](02-seller-info.md)
+Файл: [`docs/02-seller-info.md`](docs/02-seller-info.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -21,7 +21,7 @@
 
 ## Атрибуты и характеристики Ozon
 
-Файл: [`docs/03-attributes.md`](03-attributes.md)
+Файл: [`docs/03-attributes.md`](docs/03-attributes.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -33,7 +33,7 @@
 
 ## Загрузка и обновление товаров
 
-Файл: [`docs/04-products.md`](04-products.md)
+Файл: [`docs/04-products.md`](docs/04-products.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -61,7 +61,7 @@
 
 ## Штрихкоды товаров
 
-Файл: [`docs/05-barcodes.md`](05-barcodes.md)
+Файл: [`docs/05-barcodes.md`](docs/05-barcodes.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -71,7 +71,7 @@
 
 ## Цены и остатки товаров
 
-Файл: [`docs/06-prices-stocks.md`](06-prices-stocks.md)
+Файл: [`docs/06-prices-stocks.md`](docs/06-prices-stocks.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -89,7 +89,7 @@
 
 ## Акции Ozon
 
-Файл: [`docs/07-actions-ozon.md`](07-actions-ozon.md)
+Файл: [`docs/07-actions-ozon.md`](docs/07-actions-ozon.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -112,7 +112,7 @@
 
 ## Стратегии ценообразования
 
-Файл: [`docs/08-pricing-strategies.md`](08-pricing-strategies.md)
+Файл: [`docs/08-pricing-strategies.md`](docs/08-pricing-strategies.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -131,7 +131,7 @@
 
 ## Сертификаты брендов
 
-Файл: [`docs/09-certificates-brands.md`](09-certificates-brands.md)
+Файл: [`docs/09-certificates-brands.md`](docs/09-certificates-brands.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -139,7 +139,7 @@
 
 ## Сертификаты качества
 
-Файл: [`docs/10-quality-certificates.md`](10-quality-certificates.md)
+Файл: [`docs/10-quality-certificates.md`](docs/10-quality-certificates.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -161,7 +161,7 @@
 
 ## Работа со складами FBS и rFBS
 
-Файл: [`docs/11-warehouses-fbs-rfbs.md`](11-warehouses-fbs-rfbs.md)
+Файл: [`docs/11-warehouses-fbs-rfbs.md`](docs/11-warehouses-fbs-rfbs.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -178,7 +178,7 @@
 
 ## Создание FBS-складов и управление ими
 
-Файл: [`docs/12-warehouses-fbs.md`](12-warehouses-fbs.md)
+Файл: [`docs/12-warehouses-fbs.md`](docs/12-warehouses-fbs.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -202,7 +202,7 @@
 
 ## Создание складов rFBS Express и управление ими
 
-Файл: [`docs/13-warehouses-rfbs-express.md`](13-warehouses-rfbs-express.md)
+Файл: [`docs/13-warehouses-rfbs-express.md`](docs/13-warehouses-rfbs-express.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -216,7 +216,7 @@
 
 ## Обработка заказов FBS и rFBS
 
-Файл: [`docs/14-postings-fbs-rfbs.md`](14-postings-fbs-rfbs.md)
+Файл: [`docs/14-postings-fbs-rfbs.md`](docs/14-postings-fbs-rfbs.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -248,7 +248,7 @@
 
 ## Полигоны
 
-Файл: [`docs/15-polygons.md`](15-polygons.md)
+Файл: [`docs/15-polygons.md`](docs/15-polygons.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -262,7 +262,7 @@
 
 ## Доставка FBO
 
-Файл: [`docs/16-fbo-delivery.md`](16-fbo-delivery.md)
+Файл: [`docs/16-fbo-delivery.md`](docs/16-fbo-delivery.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -285,7 +285,7 @@
 
 ## Создание и управление заявками на поставку FBO
 
-Файл: [`docs/17-fbo-supplies.md`](17-fbo-supplies.md)
+Файл: [`docs/17-fbo-supplies.md`](docs/17-fbo-supplies.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -317,7 +317,7 @@
 
 ## Склады FBO
 
-Файл: [`docs/18-fbo-warehouses.md`](18-fbo-warehouses.md)
+Файл: [`docs/18-fbo-warehouses.md`](docs/18-fbo-warehouses.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -325,7 +325,7 @@
 
 ## Управление кодами маркировки и сборкой заказов для FBS/rFBS
 
-Файл: [`docs/19-marking-codes.md`](19-marking-codes.md)
+Файл: [`docs/19-marking-codes.md`](docs/19-marking-codes.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -339,7 +339,7 @@
 
 ## Доставка FBS
 
-Файл: [`docs/20-fbs-delivery.md`](20-fbs-delivery.md)
+Файл: [`docs/20-fbs-delivery.md`](docs/20-fbs-delivery.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -375,7 +375,7 @@
 
 ## Доставка rFBS
 
-Файл: [`docs/21-rfbs-delivery.md`](21-rfbs-delivery.md)
+Файл: [`docs/21-rfbs-delivery.md`](docs/21-rfbs-delivery.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -389,7 +389,7 @@
 
 ## Пропуски
 
-Файл: [`docs/22-passes.md`](22-passes.md)
+Файл: [`docs/22-passes.md`](docs/22-passes.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -403,7 +403,7 @@
 
 ## Возвраты товаров FBO и FBS
 
-Файл: [`docs/23-returns-fbo-fbs.md`](23-returns-fbo-fbs.md)
+Файл: [`docs/23-returns-fbo-fbs.md`](docs/23-returns-fbo-fbs.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -414,7 +414,7 @@
 
 ## Возвраты товаров rFBS
 
-Файл: [`docs/24-returns-rfbs.md`](24-returns-rfbs.md)
+Файл: [`docs/24-returns-rfbs.md`](docs/24-returns-rfbs.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -424,7 +424,7 @@
 
 ## Возвратные отгрузки
 
-Файл: [`docs/25-return-shipments.md`](25-return-shipments.md)
+Файл: [`docs/25-return-shipments.md`](docs/25-return-shipments.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -439,7 +439,7 @@
 
 ## Отмены заказов
 
-Файл: [`docs/26-order-cancellations.md`](26-order-cancellations.md)
+Файл: [`docs/26-order-cancellations.md`](docs/26-order-cancellations.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -449,7 +449,7 @@
 
 ## Чаты с покупателями
 
-Файл: [`docs/27-chats.md`](27-chats.md)
+Файл: [`docs/27-chats.md`](docs/27-chats.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -459,7 +459,7 @@
 
 ## Накладные
 
-Файл: [`docs/28-invoices.md`](28-invoices.md)
+Файл: [`docs/28-invoices.md`](docs/28-invoices.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -470,7 +470,7 @@
 
 ## Отчёты
 
-Файл: [`docs/29-reports.md`](29-reports.md)
+Файл: [`docs/29-reports.md`](docs/29-reports.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -488,7 +488,7 @@
 
 ## Аналитические отчёты
 
-Файл: [`docs/30-analytics.md`](30-analytics.md)
+Файл: [`docs/30-analytics.md`](docs/30-analytics.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -498,7 +498,7 @@
 
 ## Финансовые отчёты
 
-Файл: [`docs/31-finance-reports.md`](31-finance-reports.md)
+Файл: [`docs/31-finance-reports.md`](docs/31-finance-reports.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -515,7 +515,7 @@
 
 ## Чеки
 
-Файл: [`docs/32-receipts.md`](32-receipts.md)
+Файл: [`docs/32-receipts.md`](docs/32-receipts.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -525,7 +525,7 @@
 
 ## Рейтинг продавца
 
-Файл: [`docs/33-seller-rating.md`](33-seller-rating.md)
+Файл: [`docs/33-seller-rating.md`](docs/33-seller-rating.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -536,7 +536,7 @@
 
 ## Работа с цифровыми товарами
 
-Файл: [`docs/34-digital-goods.md`](34-digital-goods.md)
+Файл: [`docs/34-digital-goods.md`](docs/34-digital-goods.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -546,7 +546,7 @@
 
 ## Работа с отзывами
 
-Файл: [`docs/35-reviews.md`](35-reviews.md)
+Файл: [`docs/35-reviews.md`](docs/35-reviews.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -565,7 +565,7 @@
 
 ## Работа с вопросами и ответами
 
-Файл: [`docs/36-questions-answers.md`](36-questions-answers.md)
+Файл: [`docs/36-questions-answers.md`](docs/36-questions-answers.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -580,7 +580,7 @@
 
 ## Прочие методы
 
-Файл: [`docs/38-misc-methods.md`](38-misc-methods.md)
+Файл: [`docs/38-misc-methods.md`](docs/38-misc-methods.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -613,7 +613,7 @@
 
 ## Акции продавца
 
-Файл: [`docs/40-seller-promotions.md`](40-seller-promotions.md)
+Файл: [`docs/40-seller-promotions.md`](docs/40-seller-promotions.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -638,7 +638,7 @@
 
 ## Акции Ozon
 
-Файл: [`docs/41-actions-ozon-2.md`](41-actions-ozon-2.md)
+Файл: [`docs/41-actions-ozon-2.md`](docs/41-actions-ozon-2.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -649,7 +649,7 @@
 
 ## Работа с пуш-уведомлениями
 
-Файл: [`docs/42-push-notifications.md`](42-push-notifications.md)
+Файл: [`docs/42-push-notifications.md`](docs/42-push-notifications.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -663,7 +663,7 @@
 
 ## Работа с транспортными грузоместами FBO
 
-Файл: [`docs/43-fbo-cargoplaces.md`](43-fbo-cargoplaces.md)
+Файл: [`docs/43-fbo-cargoplaces.md`](docs/43-fbo-cargoplaces.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -684,7 +684,7 @@
 
 ## Работа с FBP-черновиками
 
-Файл: [`docs/44-fbp-drafts.md`](44-fbp-drafts.md)
+Файл: [`docs/44-fbp-drafts.md`](docs/44-fbp-drafts.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -694,7 +694,7 @@
 
 ## Работа с FBP-черновиками с доставкой direct
 
-Файл: [`docs/45-fbp-drafts-direct.md`](45-fbp-drafts-direct.md)
+Файл: [`docs/45-fbp-drafts-direct.md`](docs/45-fbp-drafts-direct.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -711,7 +711,7 @@
 
 ## Работа с FBP-черновиками c доставкой drop-off
 
-Файл: [`docs/46-fbp-drafts-dropoff.md`](46-fbp-drafts-dropoff.md)
+Файл: [`docs/46-fbp-drafts-dropoff.md`](docs/46-fbp-drafts-dropoff.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -726,7 +726,7 @@
 
 ## Работа с FBP-черновиками с доставкой pick-up
 
-Файл: [`docs/47-fbp-drafts-pickup.md`](47-fbp-drafts-pickup.md)
+Файл: [`docs/47-fbp-drafts-pickup.md`](docs/47-fbp-drafts-pickup.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -738,7 +738,7 @@
 
 ## Работа с FBP-поставками с доставкой direct
 
-Файл: [`docs/48-fbp-supplies-direct.md`](48-fbp-supplies-direct.md)
+Файл: [`docs/48-fbp-supplies-direct.md`](docs/48-fbp-supplies-direct.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -750,7 +750,7 @@
 
 ## Работа с FBP-поставками с доставкой drop-off
 
-Файл: [`docs/49-fbp-supplies-dropoff.md`](49-fbp-supplies-dropoff.md)
+Файл: [`docs/49-fbp-supplies-dropoff.md`](docs/49-fbp-supplies-dropoff.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -760,7 +760,7 @@
 
 ## Работа с FBP-поставками с доставкой pick-up
 
-Файл: [`docs/50-fbp-supplies-pickup.md`](50-fbp-supplies-pickup.md)
+Файл: [`docs/50-fbp-supplies-pickup.md`](docs/50-fbp-supplies-pickup.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -769,7 +769,7 @@
 
 ## Работа с созданной поставкой FBP
 
-Файл: [`docs/51-fbp-supply.md`](51-fbp-supply.md)
+Файл: [`docs/51-fbp-supply.md`](docs/51-fbp-supply.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -787,7 +787,7 @@
 
 ## Работа с грузоместами FBS
 
-Файл: [`docs/52-fbs-cargoplaces.md`](52-fbs-cargoplaces.md)
+Файл: [`docs/52-fbs-cargoplaces.md`](docs/52-fbs-cargoplaces.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -807,7 +807,7 @@
 
 ## Работа с актами FBO
 
-Файл: [`docs/53-fbo-acts.md`](53-fbo-acts.md)
+Файл: [`docs/53-fbo-acts.md`](docs/53-fbo-acts.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -818,7 +818,7 @@
 
 ## Premium-методы
 
-Файл: [`docs/54-premium.md`](54-premium.md)
+Файл: [`docs/54-premium.md`](docs/54-premium.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -835,7 +835,7 @@
 
 ## Причины отмены
 
-Файл: [`docs/56-cancel-reasons.md`](56-cancel-reasons.md)
+Файл: [`docs/56-cancel-reasons.md`](docs/56-cancel-reasons.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -845,7 +845,7 @@
 
 ## Доставка
 
-Файл: [`docs/57-delivery-info.md`](57-delivery-info.md)
+Файл: [`docs/57-delivery-info.md`](docs/57-delivery-info.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -857,7 +857,7 @@
 
 ## Заказы
 
-Файл: [`docs/58-orders.md`](58-orders.md)
+Файл: [`docs/58-orders.md`](docs/58-orders.md)
 
 | Endpoint | Назначение |
 |---|---|
@@ -868,7 +868,7 @@
 
 ## Отправления
 
-Файл: [`docs/59-postings-info.md`](59-postings-info.md)
+Файл: [`docs/59-postings-info.md`](docs/59-postings-info.md)
 
 | Endpoint | Назначение |
 |---|---|
