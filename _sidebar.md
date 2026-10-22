@@ -14,7 +14,7 @@
   - [Акции Ozon](docs/07-actions-ozon.md)
   - [Стратегии ценообразования](docs/08-pricing-strategies.md)
   - [Акции продавца](docs/40-seller-promotions.md)
-  - [Акции Ozon](docs/41-actions-ozon-2.md)
+  - [Акции Ozon — авто-добавление товаров](docs/41-actions-ozon-2.md)
 - **Сертификаты**
   - [Сертификаты брендов](docs/09-certificates-brands.md)
   - [Сертификаты качества](docs/10-quality-certificates.md)
