@@ -1,0 +1,3 @@
+- [GitHub](https://github.com/teliy/ozon-api)
+- [docs.ozon.ru](https://docs.ozon.ru/api/seller/)
+- [llms.txt](llms.txt)

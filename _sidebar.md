@@ -1,0 +1,79 @@
+- [Шпаргалка: все endpoints](index.md)
+- **Руководство**
+  - [Руководство по Ozon Seller API](docs/00-guides.md)
+- **Доступ и кабинет**
+  - [Информация по API-ключу](docs/01-api-key.md)
+  - [Информация по кабинету продавца](docs/02-seller-info.md)
+- **Товары и контент**
+  - [Атрибуты и характеристики Ozon](docs/03-attributes.md)
+  - [Загрузка и обновление товаров](docs/04-products.md)
+  - [Штрихкоды товаров](docs/05-barcodes.md)
+  - [Цены и остатки товаров](docs/06-prices-stocks.md)
+  - [Работа с цифровыми товарами](docs/34-digital-goods.md)
+- **Акции и ценообразование**
+  - [Акции Ozon](docs/07-actions-ozon.md)
+  - [Стратегии ценообразования](docs/08-pricing-strategies.md)
+  - [Акции продавца](docs/40-seller-promotions.md)
+  - [Акции Ozon](docs/41-actions-ozon-2.md)
+- **Сертификаты**
+  - [Сертификаты брендов](docs/09-certificates-brands.md)
+  - [Сертификаты качества](docs/10-quality-certificates.md)
+- **Склады и полигоны**
+  - [Работа со складами FBS и rFBS](docs/11-warehouses-fbs-rfbs.md)
+  - [Создание FBS-складов и управление ими](docs/12-warehouses-fbs.md)
+  - [Создание складов rFBS Express и управление ими](docs/13-warehouses-rfbs-express.md)
+  - [Полигоны](docs/15-polygons.md)
+- **Заказы и отправления FBS/rFBS**
+  - [Обработка заказов FBS и rFBS](docs/14-postings-fbs-rfbs.md)
+  - [Отмены заказов](docs/26-order-cancellations.md)
+  - [Причины отмены](docs/56-cancel-reasons.md)
+  - [Доставка](docs/57-delivery-info.md)
+  - [Заказы](docs/58-orders.md)
+  - [Отправления](docs/59-postings-info.md)
+- **Маркировка и сборка**
+  - [Управление кодами маркировки и сборкой заказов для FBS/rFBS](docs/19-marking-codes.md)
+- **FBO**
+  - [Доставка FBO](docs/16-fbo-delivery.md)
+  - [Создание и управление заявками на поставку FBO](docs/17-fbo-supplies.md)
+  - [Склады FBO](docs/18-fbo-warehouses.md)
+  - [Работа с транспортными грузоместами FBO](docs/43-fbo-cargoplaces.md)
+  - [Работа с актами FBO](docs/53-fbo-acts.md)
+- **FBP**
+  - [Работа с FBP-черновиками](docs/44-fbp-drafts.md)
+  - [Работа с FBP-черновиками с доставкой direct](docs/45-fbp-drafts-direct.md)
+  - [Работа с FBP-черновиками c доставкой drop-off](docs/46-fbp-drafts-dropoff.md)
+  - [Работа с FBP-черновиками с доставкой pick-up](docs/47-fbp-drafts-pickup.md)
+  - [Работа с FBP-поставками с доставкой direct](docs/48-fbp-supplies-direct.md)
+  - [Работа с FBP-поставками с доставкой drop-off](docs/49-fbp-supplies-dropoff.md)
+  - [Работа с FBP-поставками с доставкой pick-up](docs/50-fbp-supplies-pickup.md)
+  - [Работа с созданной поставкой FBP](docs/51-fbp-supply.md)
+- **Доставка FBS/rFBS**
+  - [Доставка FBS](docs/20-fbs-delivery.md)
+  - [Доставка rFBS](docs/21-rfbs-delivery.md)
+  - [Пропуски](docs/22-passes.md)
+  - [Ozon Доставка](docs/55-ozon-delivery.md)
+  - [Работа с грузоместами FBS](docs/52-fbs-cargoplaces.md)
+- **Возвраты**
+  - [Возвраты товаров FBO и FBS](docs/23-returns-fbo-fbs.md)
+  - [Возвраты товаров rFBS](docs/24-returns-rfbs.md)
+  - [Возвратные отгрузки](docs/25-return-shipments.md)
+- **Общение с покупателями**
+  - [Чаты с покупателями](docs/27-chats.md)
+  - [Работа с отзывами](docs/35-reviews.md)
+  - [Работа с вопросами и ответами](docs/36-questions-answers.md)
+- **Отчёты и финансы**
+  - [Накладные](docs/28-invoices.md)
+  - [Отчёты](docs/29-reports.md)
+  - [Аналитические отчёты](docs/30-analytics.md)
+  - [Финансовые отчёты](docs/31-finance-reports.md)
+  - [Чеки](docs/32-receipts.md)
+  - [Рейтинг продавца](docs/33-seller-rating.md)
+- **Уведомления**
+  - [Работа с пуш-уведомлениями](docs/42-push-notifications.md)
+  - [Уведомления (Notifications)](docs/99-notifications.md)
+- **Прочее**
+  - [Бета-методы](docs/37-beta-methods.md)
+  - [Прочие методы](docs/38-misc-methods.md)
+  - [Работа с квантами](docs/39-rabota-s-kvantami.md)
+  - [Premium-методы](docs/54-premium.md)
+  - [Частые ошибки](docs/60-common-errors.md)
