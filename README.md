@@ -1,6 +1,50 @@
 # ozon-api — Документация Ozon Seller API для ИИ
 
+[![CI](https://img.shields.io/github/actions/workflow/status/teliy/ozon-api/ci.yml?label=CI)](https://github.com/teliy/ozon-api/actions)
+[![Ozon Seller API](https://img.shields.io/badge/Ozon_Seller_API-2.1-005bff)](https://docs.ozon.ru/api/seller/)
+[![Методов](https://img.shields.io/badge/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%B2-482-brightgreen)](index.md)
+[![Размер репо](https://img.shields.io/github/repo-size/teliy/ozon-api)](https://github.com/teliy/ozon-api)
+[![Лицензия](https://img.shields.io/github/license/teliy/ozon-api)](LICENSE)
+
 Полный справочник **Ozon Seller API (2.1)**, конвертированный из PDF (docs.ozon.ru, выгрузка от 2026-09-28) в структурированный Markdown, оптимизированный для больших языковых моделей и RAG-систем.
+
+## Оглавление
+
+- [Ключевые факты](#ключевые-факты)
+- [Синхронизация с живой документацией (2026-10-22)](#синхронизация-с-живой-документацией-2026-10-22)
+- [Сверка бейджей и примечаний (2026-10-23)](#сверка-бейджей-и-примечаний-2026-10-23)
+- [Сверка схем тел запросов и ответов (2026-10-23)](#сверка-схем-тел-запросов-и-ответов-2026-10-23)
+- [Структура](#структура)
+- [Как использовать с ИИ](#как-использовать-с-ии)
+- [Формат описания метода](#формат-описания-метода)
+- [Известные ограничения конверсии](#известные-ограничения-конверсии)
+- [Генерация](#генерация)
+
+### Разделы справочника (`docs/`)
+
+| Раздел | Раздел | Раздел |
+|---|---|---|
+| [00 · Руководство по Ozon Seller API](docs/00-guides.md) | [21 · Доставка rFBS](docs/21-rfbs-delivery.md) | [42 · Работа с пуш-уведомлениями](docs/42-push-notifications.md) |
+| [01 · Информация по API-ключу](docs/01-api-key.md) | [22 · Пропуски](docs/22-passes.md) | [43 · Работа с транспортными грузоместами FBO](docs/43-fbo-cargoplaces.md) |
+| [02 · Информация по кабинету продавца](docs/02-seller-info.md) | [23 · Возвраты товаров FBO и FBS](docs/23-returns-fbo-fbs.md) | [44 · Работа с FBP-черновиками](docs/44-fbp-drafts.md) |
+| [03 · Атрибуты и характеристики Ozon](docs/03-attributes.md) | [24 · Возвраты товаров rFBS](docs/24-returns-rfbs.md) | [45 · Работа с FBP-черновиками с доставкой direct](docs/45-fbp-drafts-direct.md) |
+| [04 · Загрузка и обновление товаров](docs/04-products.md) | [25 · Возвратные отгрузки](docs/25-return-shipments.md) | [46 · Работа с FBP-черновиками c доставкой drop-off](docs/46-fbp-drafts-dropoff.md) |
+| [05 · Штрихкоды товаров](docs/05-barcodes.md) | [26 · Отмены заказов](docs/26-order-cancellations.md) | [47 · Работа с FBP-черновиками с доставкой pick-up](docs/47-fbp-drafts-pickup.md) |
+| [06 · Цены и остатки товаров](docs/06-prices-stocks.md) | [27 · Чаты с покупателями](docs/27-chats.md) | [48 · Работа с FBP-поставками с доставкой direct](docs/48-fbp-supplies-direct.md) |
+| [07 · Акции Ozon](docs/07-actions-ozon.md) | [28 · Накладные](docs/28-invoices.md) | [49 · Работа с FBP-поставками с доставкой drop-off](docs/49-fbp-supplies-dropoff.md) |
+| [08 · Стратегии ценообразования](docs/08-pricing-strategies.md) | [29 · Отчёты](docs/29-reports.md) | [50 · Работа с FBP-поставками с доставкой pick-up](docs/50-fbp-supplies-pickup.md) |
+| [09 · Сертификаты брендов](docs/09-certificates-brands.md) | [30 · Аналитические отчёты](docs/30-analytics.md) | [51 · Работа с созданной поставкой FBP](docs/51-fbp-supply.md) |
+| [10 · Сертификаты качества](docs/10-quality-certificates.md) | [31 · Финансовые отчёты](docs/31-finance-reports.md) | [52 · Работа с грузоместами FBS](docs/52-fbs-cargoplaces.md) |
+| [11 · Работа со складами FBS и rFBS](docs/11-warehouses-fbs-rfbs.md) | [32 · Чеки](docs/32-receipts.md) | [53 · Работа с актами FBO](docs/53-fbo-acts.md) |
+| [12 · Создание FBS-складов и управление ими](docs/12-warehouses-fbs.md) | [33 · Рейтинг продавца](docs/33-seller-rating.md) | [54 · Premium-методы](docs/54-premium.md) |
+| [13 · Создание складов rFBS Express и управление ими](docs/13-warehouses-rfbs-express.md) | [34 · Работа с цифровыми товарами](docs/34-digital-goods.md) | [55 · Ozon Доставка](docs/55-ozon-delivery.md) |
+| [14 · Обработка заказов FBS и rFBS](docs/14-postings-fbs-rfbs.md) | [35 · Работа с отзывами](docs/35-reviews.md) | [56 · Причины отмены](docs/56-cancel-reasons.md) |
+| [15 · Полигоны](docs/15-polygons.md) | [36 · Работа с вопросами и ответами](docs/36-questions-answers.md) | [57 · Доставка](docs/57-delivery-info.md) |
+| [16 · Доставка FBO](docs/16-fbo-delivery.md) | [37 · Бета-методы](docs/37-beta-methods.md) | [58 · Заказы](docs/58-orders.md) |
+| [17 · Создание и управление заявками на поставку FBO](docs/17-fbo-supplies.md) | [38 · Прочие методы](docs/38-misc-methods.md) | [59 · Отправления](docs/59-postings-info.md) |
+| [18 · Склады FBO](docs/18-fbo-warehouses.md) | [39 · Работа с квантами](docs/39-rabota-s-kvantami.md) | [60 · Частые ошибки](docs/60-common-errors.md) |
+| [19 · Управление кодами маркировки и сборкой заказов для FBS/rFBS](docs/19-marking-codes.md) | [40 · Акции продавца](docs/40-seller-promotions.md) | [99 · Уведомления (Notifications)](docs/99-notifications.md) |
+| [20 · Доставка FBS](docs/20-fbs-delivery.md) | [41 · Акции Ozon](docs/41-actions-ozon-2.md) |  |
 
 ## Ключевые факты
 
@@ -56,6 +100,8 @@
 ├── index.md             — шпаргалка: все endpoints в таблицах
 ├── llms.txt             — индекс файлов для ИИ (llms.txt standard)
 ├── llms-full.txt        — вся документация одним файлом
+├── LICENSE              — лицензия (MIT)
+├── scripts/validate_markdown.py — валидатор Markdown (ссылки, якоря, таблицы)
 └── docs/
     ├── 00-guides.md     — руководства: начало работы, авторизация, лимиты
     ├── 01…NN-*.md       — справочник методов по разделам API
@@ -81,3 +127,5 @@
 ## Генерация
 
 Конвертация выполнена автоматически: PDF → PyMuPDF → структурный парсер (шрифты/колонки) → Markdown. Дата генерации: 2026-09-29. Сверка с живой документацией docs.ozon.ru: 2026-10-22, сверка бейджей и примечаний: 2026-10-23.
+
+Для включения CI-проверок (битые ссылки, якоря, таблицы — `scripts/validate_markdown.py`) добавьте в репозиторий файл `.github/workflows/ci.yml` (например, через веб-интерфейс GitHub: *Add file → Create new file*). После первого запуска бейдж CI в шапке обновится автоматически.
