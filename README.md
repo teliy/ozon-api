@@ -34,6 +34,21 @@
 
 Известное ограничение: таблица «Изменения в методах» в `docs/99-notifications.md` содержит усечённые строки из PDF — она не входит в Redoc-снапшот docs.ozon.ru и не может быть сверена автоматически.
 
+## Сверка схем тел запросов и ответов (2026-10-23)
+
+Полная сверка схем (поля и типы) всех методов с живой документацией: 482/482 операций сопоставлены, 2987 полей схем проверено. После правок — **0 расхождений типов, 0 недостающих и 0 лишних полей** относительно Redoc-снапшота docs.ozon.ru от 22.10.2026.
+
+- **Восстановлены ограничения массивов** (35 полей): к типам добавлены лимиты `<= N items` (30 полей, например `prices <= 1000 items` в `/v1/product/import/prices`, `working_days <= 7 items` при создании FBS-склада) и `[ min .. max ] items` (13 полей, например `discount_levels [ 2 .. 4 ] items` в многоуровневой скидке, `review_ids [ 1 .. 100 ] items`)
+- **Очищены типы от приклеенных форматов** (10 полей): PDF склеивал подсказки формата с типом — `string+7(XXX)XXX-XX-XX`, `string YYYY-MM-DD`, `string 7XXXXXXXXXX`, `string +86(XXX)XXXX-XXXX` заменены на `string` / `string <date-time>`, а подсказки формата перенесены в описания полей
+- **Добавлены пропущенные типы** (9 полей): `id` и `delivery_method_id` → `int <int64>`, `containers_count` → `int <int32>`, `doc_type` → `any <string>`, `filter` → `posting_number (object) or date (object)`, `delivery` → `courier (object) or pick_up (object)`, `published_at` → `timestamp`, `status` → `enum` (типы взяты из живой документации дословно)
+- **Добавлены пропущенные поля схем** (11 полей): `required` и `variants` в ответах `/v2/product/certification/{options,params}`, `courier_return_warehouse_info` в запросах `/v1/warehouse/fbs/create` и `/v1/warehouse/fbs/first-mile/update`, `is_courier_return_mile_available` и `is_dropoff_return_mile_available` в ответе `/v1/warehouse/fbs/return-mile/check`, `is_blr_traceable` и `scanit` в ответе `/v2/posting/fbs/act/get-postings`
+- **Исправлены маркеры обязательности** (3 поля): `products` в `/v1/seller-actions/products/add` теперь *обязательный* с лимитом `<= 100 items` (и удалён фантомный вложенный `items` — артефакт PDF); снята ошибочная пометка `*обязательный*` с `name` в ответах методов сертификации
+- **Замена 14 JSON-примеров** на чистые версии из живой документации (запросы и ответы метода, где менялись поля): устранены обрывы PDF и добавлены новые поля (`courier_return_warehouse_info`, `is_blr_traceable`, `variants` и др.)
+- **Удалён дубликат метода** `POST /v1/product/info/stocks-by-warehouse/fbo`: секция была и в `docs/04-products.md`, и в `docs/38-misc-methods.md` — оставлена только версия в `docs/04-products.md` (также убраны дубль из `index.md` и лишний сегмент `llms-full.txt`; в `38-misc` теперь 26 методов)
+- Обновлены `index.md`, `llms.txt`, `llms-full.txt`
+
+Особенности, сверенные и признанные корректными (не являются ошибками): 9 методов с «свободным» телом запроса (`object` без фиксированных свойств) передаются в документации пустым примером `{}`; поле `last_id` в `/v1/question/answer/list` не имеет типа в живой документации.
+
 ## Структура
 
 ```

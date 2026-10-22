@@ -151,7 +151,7 @@
 **Тело запроса** (`application/json`):
 - **date_end** `string <date-time>` *обязательный* — Дата и время окончания акции.
 - **date_start** `string <date-time>` *обязательный* — Дата и время начала акции.
-- **discount_levels** `Array of objects` *обязательный* — Уровни скидки.
+- **discount_levels** `Array of objects [ 2 .. 4 ] items` *обязательный* — Уровни скидки.
 - **discount_type** `string` *обязательный* — Тип скидки: PERCENT — скидка в процентах; CURRENCY — скидка в валюте.. Enum: `"PERCENT"`, `"CURRENCY"`.
 - **is_legal_entities_segment** `boolean` — true , если акция только для юридических лиц.
 - **title** `string` — Название акции.
@@ -539,8 +539,7 @@
 
 **Тело запроса** (`application/json`):
 - **action_id** `integer <uint64>` *обязательный* — Идентификатор акции. Получите значение параметра методом /v1/seller-actions/list.
-- **products** `Array of action_price (object) or discount_percent (object)`
-  - **items** *обязательный* — Информация о товарах.
+- **products** `Array of action_price (object) or discount_percent (object) <= 100 items` *обязательный* — Информация о товарах.
 
 **Пример запроса:**
 
@@ -649,7 +648,7 @@
 
 **Тело запроса** (`application/json`):
 - **action_id** `integer <uint64>` *обязательный* — Идентификатор акции. Получите значение параметра методом /v1/seller-actions/list.
-- **skus** `Array of strings <uint64>` *обязательный* — Идентификаторы товаров в системе Ozon — SKU.
+- **skus** `Array of strings <uint64> <= 100 items` *обязательный* — Идентификаторы товаров в системе Ozon — SKU.
 
 **Пример запроса:**
 
@@ -841,7 +840,7 @@
 Вы можете оставить обратную связь о работе метода в комментариях в сообществе разработчиков Ozon for dev.
 
 **Тело запроса** (`application/json`):
-- **action_ids** `Array of strings <uint64>` — Идентификаторы акций.
+- **action_ids** `Array of strings <uint64> <= 100 items` — Идентификаторы акций.
 - **action_type** `Array of strings` — Механика акции: DISCOUNT — скидка; VOUCHER_DISCOUNT — скидка по промокоду; DISCOUNT_WITH_CONDITION — скидка от суммы заказа; INSTALLMENT — беспроцентная рассрочка; INDIVIDUAL_DISCOUNT_BY_PRODUCTS — бонусы продавца; OZON_ACCOUNT_DISCOUNT — повышенная скидка с картой Ozon Банка; MULTI_LEVEL_DISCOUNT_ON_AMOUNT — многоуровневая скидка от суммы.. Enum: `"DISCOUNT"`, `"VOUCHER_DISCOUNT"`, `"DISCOUNT_WITH_CONDITION"`, `"INSTALLMENT"`, `"INDIVIDUAL_DISCOUNT_BY_PRODUCTS"`, `"OZON_ACCOUNT_DISCOUNT"`, `"MULTI_LEVEL_DISCOUNT_ON_AMOUNT"`.
 - **limit** `integer <uint64>` *обязательный* — Количество значений на странице.
 - **offset** `integer <uint64>` — Количество элементов, которое будет пропущено в ответе. Например, если offset = 10 , то ответ начнётся с 11-го найденного элемента.

@@ -230,8 +230,8 @@
 **Тело запроса** (`application/json`):
 - **cursor** `string` — Указатель для выборки следующих данных.
 - **limit** `integer <uint64>` *обязательный* — Количество значений в ответе.
-- **offer_id** `Array of strings` — Идентификаторы товаров в системе продавца — артикул.
-- **sku** `Array of strings <int64>` *обязательный* — Идентификаторы товаров в системе Ozon — SKU.
+- **offer_id** `Array of strings <= 1000 items` — Идентификаторы товаров в системе продавца — артикул.
+- **sku** `Array of strings <int64> <= 1000 items` *обязательный* — Идентификаторы товаров в системе Ozon — SKU.
 
 **Пример запроса:**
 
@@ -366,7 +366,7 @@ action_price_enabled_min_price_missing .
 ```
 
 **Тело запроса** (`application/json`):
-- **prices** `Array of objects` — Информация о ценах товаров.
+- **prices** `Array of objects <= 1000 items` — Информация о ценах товаров.
 
 **Пример запроса:**
 
@@ -433,7 +433,7 @@ action_price_enabled_min_price_missing .
 Минимальная цена действует 30 дней после установки. После этого настройка выключается. Вы можете продлить её: вызовите метод повторно и укажите product_ids .
 
 **Тело запроса** (`application/json`):
-- **product_ids** `Array of strings <int64>` — Список идентификаторов товаров в системе Ozon — product_id .
+- **product_ids** `Array of strings <int64> <= 1000 items` — Список идентификаторов товаров в системе Ozon — product_id .
 
 **Пример запроса:**
 

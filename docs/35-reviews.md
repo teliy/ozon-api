@@ -206,7 +206,7 @@
 Доступно для продавцов с подпиской Управление отзывами или Premium Pro.
 
 **Тело запроса** (`application/json`):
-- **review_ids** `Array of strings` — Список идентификаторов отзывов.
+- **review_ids** `Array of strings [ 1 .. 100 ] items` — Список идентификаторов отзывов.
 - **status** `string` — Новый статус отзыва: NEW — новый; VIEWED — просмотренный; PROCESSED — обработанный.. Enum: `"NEW"`, `"VIEWED"`, `"PROCESSED"`.
 
 **Пример запроса:**

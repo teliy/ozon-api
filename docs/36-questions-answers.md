@@ -100,7 +100,8 @@
 ```json
 {
   "last_id": "",
-  "question_id": "019228a7-91d8-76af-a73a \"sku\": 646399170"
+  "question_id": "019228a7-91d8-76af-a73a-e989dfac7ac8",
+  "sku": 646399170
 }
 ```
 
@@ -123,7 +124,8 @@
     {
       "author_name": "string",
       "id": "string",
-      "published_at": "2024-08-14T11:4 \"question_id\": \"string",
+      "published_at": "2024-08-14T11:44:35.352Z",
+      "question_id": "string",
       "sku": 646399170,
       "status_publication": "",
       "text": "string"
@@ -240,10 +242,10 @@
 - **author_name** `string` — Автор вопроса.
 - **id** `string` — Идентификатор вопроса.
 - **product_url** `string` — Ссылка на товар.
-- **published_at** — Дата публикации вопроса.
+- **published_at** `timestamp` — Дата публикации вопроса.
 - **question_link** `string` — Ссылка на вопрос.
 - **sku** `integer <int64>` — Идентификатор товара в системе Ozon — SKU.
-- **status** — Статус вопроса: NEW — новый, ALL — все вопросы, VIEWED — просмотренный, PROCESSED — обработанный, UNPROCESSED — необработанный.
+- **status** `enum` — Статус вопроса: NEW — новый, ALL — все вопросы, VIEWED — просмотренный, PROCESSED — обработанный, UNPROCESSED — необработанный.
 - **text** `string` — Текст вопроса.
 
 **Пример ответа (`200`):**
@@ -252,10 +254,13 @@
 {
   "answers_count": "0",
   "author_name": "Пользователь OZON",
-  "product_url": "https://www.ozon.ru/prod \"sku\": 646399170",
-  "id": "0192a009-769f-7ee9-b412-893045171 \"text\": \"Можно выбрать цвет?",
-  "question_link": "https://www.ozon.ru/p ",
-  "published_at": "2024-10-08T10:09:29.099 \"status\": \"VIEWED\""
+  "product_url": "",
+  "sku": 646399170,
+  "id": "0192a009-769f-7ee9-b412-893045171a66",
+  "text": "Можно выбрать цвет?",
+  "question_link": "",
+  "published_at": "2024-10-08T10:09:29.099284Z",
+  "status": "VIEWED"
 }
 ```
 
@@ -297,7 +302,7 @@
 | `default` | Ошибка |
 
 **Схема ответа (`200`):**
-- **questions** `Array of objects` — Вопросы.
+- **questions** `Array of objects [ 0 .. 10 ] items` — Вопросы.
 - **last_id** `string` — Идентификатор последнего значения на странице. Чтобы получить следующие значения, передайте полученное значение в следующем запросе в параметре last_id .
 - **has_next** `boolean` — true , если в ответе вернулись не все вопросы.
 

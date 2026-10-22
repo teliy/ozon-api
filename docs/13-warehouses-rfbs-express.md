@@ -18,7 +18,7 @@
 - **delivery_method** `object` *обязательный* — Информация о методе доставки «Партнёры Ozon».
 - **min_order_value** `integer <int64>` — Минимальная стоимость заказа.
 - **name** `string` *обязательный* — Название склада.
-- **phone** `string+7(XXX)XXX-XX-XX` *обязательный* — Номер телефона склада.
+- **phone** `string` *обязательный* — Номер телефона склада. Укажите в формате +7(XXX)XXX-XX-XX.
 - **timetable_warehouse** `object` *обязательный* — Расписание работы склада.
 
 **Пример запроса:**
@@ -124,7 +124,7 @@
 - **is_auto_assembly** `boolean` — true , если на складе доступна автосборка.
 - **min_order_value** `integer <int64>` — Минимальная стоимость заказа.
 - **name** `string` — Название склада.
-- **phone** `string+7(XXX)XXX-XX-XX` — Номер телефона склада.
+- **phone** `string` — Номер телефона склада. Укажите в формате +7(XXX)XXX-XX-XX.
 - **timetable_warehouse** `object` — Расписание работы склада.
 - **warehouse_id** `integer <int64>` *обязательный* — Идентификатор склада.
 
@@ -206,7 +206,7 @@
 **Тело запроса** (`application/json`):
 - **courier_comment** `string` — Комментарий для курьера.
 - **is_courier_phone_same_as_warehouse** `boolean` — true , если номер телефона курьера совпадает с номером телефона склада. Если is_courier_phone_same_as_warehous e = true , текущий номер телефона будет указан в courier_phones .
-- **courier_phones** `Array of strings` — Номера телефонов для связи с курьером.
+- **courier_phones** `Array of strings <= 3 items` — Номера телефонов для связи с курьером.
 - **cut_in** `integer <int64>` — Время сборки.
 - **deliver_to_pvz** `boolean` — true , если доставка Ozon Express в пункт выдачи Ozon.
 - **delivery_costs** `object` — Расходы на доставку, которые вы готовы оплатить.
@@ -279,7 +279,7 @@
 - **delivery_method** `object` *обязательный* — Информация о методе доставки «Вы или сторонняя служба».
 - **min_order_value** `integer <int64>` — Минимальная стоимость заказа в рублях.
 - **name** `string` *обязательный* — Название склада.
-- **phone** `string+7(XXX)XXX-XX-XX` *обязательный* — Номер телефона склада.
+- **phone** `string` *обязательный* — Номер телефона склада. Укажите в формате +7(XXX)XXX-XX-XX.
 - **timetable_warehouse** `object` *обязательный* — Расписание работы склада.
 
 **Пример запроса:**

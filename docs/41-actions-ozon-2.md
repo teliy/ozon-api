@@ -157,7 +157,7 @@
 **Тело запроса** (`application/json`):
 - **action_id** `integer <uint64>` — Идентификатор акции.
 - **auto_add_date** `string <date-time>` — Дата и время автодобавления товаров в акцию из параметра result.auto_add_dates в ответе метода /v1/actions.
-- **product_ids** `Array of strings <uint64>` — Идентификаторы товаров в системе Ozon — product_id .
+- **product_ids** `Array of strings <uint64> [ 1 .. 1000 ] items` — Идентификаторы товаров в системе Ozon — product_id .
 
 **Пример запроса:**
 

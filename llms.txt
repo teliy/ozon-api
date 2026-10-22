@@ -46,7 +46,7 @@ All request/response bodies are JSON.
 - [docs/35-reviews.md](docs/35-reviews.md): Работа с отзывами (12 endpoints)
 - [docs/36-questions-answers.md](docs/36-questions-answers.md): Работа с вопросами и ответами (8 endpoints)
 - [docs/37-beta-methods.md](docs/37-beta-methods.md): Бета-методы
-- [docs/38-misc-methods.md](docs/38-misc-methods.md): Прочие методы (27 endpoints)
+- [docs/38-misc-methods.md](docs/38-misc-methods.md): Прочие методы (26 endpoints)
 - [docs/39-rabota-s-kvantami.md](docs/39-rabota-s-kvantami.md): Работа с квантами
 - [docs/40-seller-promotions.md](docs/40-seller-promotions.md): Акции продавца (18 endpoints)
 - [docs/41-actions-ozon-2.md](docs/41-actions-ozon-2.md): Акции Ozon (4 endpoints)

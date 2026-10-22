@@ -670,7 +670,7 @@ first_mile_type = pickup  и integration_type = ozon_outsourced .
 
 **Тело запроса** (`application/json`):
 - **carriage_id** `integer <int64>` *обязательный* — Идентификатор перевозки.
-- **phone** `string +86(XXX)XXXX-XXXX` *обязательный* — Телефон продавца.
+- **phone** `string` *обязательный* — Телефон продавца. Укажите в формате +86(XXX)XXXX-XXXX.
 - **wechat_nickname** `string` — WeChat продавца.
 - **comment** `string` — Комментарий для курьера.
 
@@ -842,7 +842,7 @@ first_mile_type = pickup  и integration_type = ozon_outsourced .
 Возвращает список отправлений в акте по его идентификатору.
 
 **Тело запроса** (`application/json`):
-- **id** *обязательный* — Идентификатор акта. Получите значение параметра методом /v2/posting/fbs/act/list или /v1/carriage/create.
+- **id** `int <int64>` *обязательный* — Идентификатор акта. Получите значение параметра методом /v2/posting/fbs/act/list или /v1/carriage/create.
 
 **Пример запроса:**
 
@@ -866,8 +866,10 @@ first_mile_type = pickup  и integration_type = ozon_outsourced .
 **Схема ответа (`200`):**
 - **result** `Array of objects` — Информация об отправлениях.
   - **id** `integer <int64>` — Идентификатор акта.
+  - **is_blr_traceable** `boolean` — true , если товар прослеживаемый.
   - **multi_box_qty** `integer <int32>` — Количество коробок, в которые упакован товар.
   - **posting_number** `string` — Номер отправления.
+  - **scanit** `string` — Штрихкод ScanIt с этикетки.
   - **status** `string` — Статус отправления.
   - **seller_error** `string` — Расшифровка кода ошибки.
   - **updated_at** `string <date-time>` — Дата и время обновления записи об отправлении.
@@ -881,16 +883,23 @@ first_mile_type = pickup  и integration_type = ozon_outsourced .
   "result": [
     {
       "id": 0,
+      "is_blr_traceable": true,
       "multi_box_qty": 0,
       "posting_number": "string",
+      "scanit": "string",
       "status": "string",
       "seller_error": "string",
-      "updated_at": "2019-08-24T14:15: ",
-      "created_at": "2019-08-24T14:15: \"products\": [ { \"name\": \"string",
-      "offer_id": "string",
-      "price": "string",
-      "quantity": 0,
-      "sku": 0
+      "updated_at": "2019-08-24T14:15:22Z",
+      "created_at": "2019-08-24T14:15:22Z",
+      "products": [
+        {
+          "name": "string",
+          "offer_id": "string",
+          "price": "string",
+          "quantity": 0,
+          "sku": 0
+        }
+      ]
     }
   ]
 }
@@ -1206,11 +1215,11 @@ first_mile_type = pickup  и integration_type = ozon_outsourced .
 
 **Схема ответа (`200`):**
 - **result** `Array of objects` — Результат запроса.
-  - **id** — Идентификатор отгрузки.
-  - **delivery_method_id** — Идентификатор метода доставки.
+  - **id** `int <int64>` — Идентификатор отгрузки.
+  - **delivery_method_id** `int <int64>` — Идентификатор метода доставки.
   - **delivery_method_name** `string` — Название метода доставки.
   - **integration_type** `string` — Тип интеграции со службой доставки: ozon — доставка через Ozon логистику. 3pl — доставка внешней службой, продавец регистрирует заказ.
-  - **containers_count** — Число грузовых мест.
+  - **containers_count** `int <int32>` — Число грузовых мест.
   - **status** `string` — Статус отгрузки.
   - **departure_date** `string` — Дата отгрузки.
   - **created_at** `string <date-time>` — Дата создания записи об отгрузке.
@@ -1234,19 +1243,24 @@ first_mile_type = pickup  и integration_type = ozon_outsourced .
       "containers_count": null,
       "status": "string",
       "departure_date": "string",
-      "created_at": "2019-08-24T14:15: ",
-      "updated_at": "2019-08-24T14:15: \"act_type\": \"string",
+      "created_at": "2019-08-24T14:15:22Z",
+      "updated_at": "2019-08-24T14:15:22Z",
+      "act_type": "string",
       "is_partial": true,
-      "has_postings_for_next_carriage": "partial_num",
+      "has_postings_for_next_carriage": true,
+      "partial_num": 0,
       "related_docs": {
         "act_of_acceptance": {
-          "created_at": "2019-08-24 \"document_status\": "
+          "created_at": "2019-08-24T14:15:22Z",
+          "document_status": "string"
         },
         "act_of_mismatch": {
-          "created_at": "2019-08-24 \"document_status\": "
+          "created_at": "2019-08-24T14:15:22Z",
+          "document_status": "string"
         },
         "act_of_excess": {
-          "created_at": "2019-08-24 \"document_status\": "
+          "created_at": "2019-08-24T14:15:22Z",
+          "document_status": "string"
         }
       }
     }
@@ -1273,7 +1287,7 @@ first_mile_type = pickup  и integration_type = ozon_outsourced .
 
 **Тело запроса** (`application/json`):
 - **id** `integer <int64>` *обязательный* — Номер задания на формирование документов (также идентификатор перевозки) из метода POST /v2/posting/fbs/act/create.
-- **doc_type** — Тип электронного документа: act_of_acceptance — лист отгрузки, act_of_mismatch — акт о расхождениях, act_of_excess — акт об излишках, waybill — транспортная накладная.
+- **doc_type** `any <string>` — Тип электронного документа: act_of_acceptance — лист отгрузки, act_of_mismatch — акт о расхождениях, act_of_excess — акт об излишках, waybill — транспортная накладная.
 
 **Пример запроса:**
 

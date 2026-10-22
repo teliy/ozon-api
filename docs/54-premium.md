@@ -604,7 +604,7 @@ date_from .
 Доступно для продавцов с подпиской Premium Pro.
 
 **Тело запроса** (`application/json`):
-- **skus** `Array of strings <int64>` *обязательный* — Список SKU.
+- **skus** `Array of strings <int64> [ 1 .. 1000 ] items` *обязательный* — Список SKU.
 
 **Пример запроса:**
 

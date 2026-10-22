@@ -427,7 +427,7 @@
 
 **Тело запроса** (`application/json`):
 - **action_id** `number <double>` *обязательный* — Идентификатор акции. Можно получить с помощью метода /v1/actions.
-- **products** `Array of objects` *обязательный* — Список товаров.
+- **products** `Array of objects <= 1000 items` *обязательный* — Список товаров.
 
 **Пример запроса:**
 
@@ -480,7 +480,7 @@
 
 **Тело запроса** (`application/json`):
 - **action_id** `integer <uint64>` *обязательный* — Идентификатор акции. Получите методом /v1/actions.
-- **products** `Array of objects` *обязательный* — Список товаров.
+- **products** `Array of objects <= 1000 items` *обязательный* — Список товаров.
 
 **Пример запроса:**
 
@@ -543,7 +543,7 @@
 
 **Тело запроса** (`application/json`):
 - **action_id** `integer <uint64>` *обязательный* — Идентификатор акции. Получите методом /v1/actions.
-- **product_ids** `Array of strings <uint64>` *обязательный* — Список идентификаторов товаров в системе Ozon — product_id .
+- **product_ids** `Array of strings <uint64> <= 1000 items` *обязательный* — Список идентификаторов товаров в системе Ozon — product_id .
 
 **Пример запроса:**
 
@@ -1121,7 +1121,7 @@
 **Тело запроса** (`application/json`):
 - **action_id** `integer <uint64>` *обязательный* — Идентификатор акции.
 - **auto_add_date** `string <date-time>` *обязательный* — Дата и время автодобавления товаров в акцию из параметра result.auto_add_dates в ответе метода /v1/actions.
-- **product_ids** `Array of strings <uint64>` *обязательный* — Идентификаторы товаров в системе Ozon — product_id .
+- **product_ids** `Array of strings <uint64> <= 1000 items` *обязательный* — Идентификаторы товаров в системе Ozon — product_id .
 
 **Пример запроса:**
 
@@ -1171,7 +1171,7 @@
 **Тело запроса** (`application/json`):
 - **action_id** `integer <uint64>` *обязательный* — Идентификатор акции.
 - **auto_add_date** `string <date-time>` *обязательный* — Дата и время автодобавления товаров в акцию из параметра result.auto_add_dates в ответе метода /v1/actions.
-- **products** `Array of objects` *обязательный* — Список товаров, которые нужно добавить или обновить в автодобавлении.
+- **products** `Array of objects [ 1 .. 1000 ] items` *обязательный* — Список товаров, которые нужно добавить или обновить в автодобавлении.
 
 **Пример запроса:**
 

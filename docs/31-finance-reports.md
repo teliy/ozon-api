@@ -222,7 +222,7 @@
 Возвращает подробную информацию по всем начислениям. Максимальный период, за который можно получить информацию в одном запросе — 1 месяц. Если в запросе не указывать posting_number , то в ответе будут все отправления за указанный период или отправления определённого типа.
 
 **Тело запроса** (`application/json`):
-- **filter** — Фильтр.
+- **filter** `posting_number (object) or date (object)` — Фильтр.
 - **page** `integer <int64>` *обязательный* — Номер страницы, возвращаемой в запросе.
 - **page_size** `integer <int64>` *обязательный* — Количество элементов на странице.
 
@@ -232,7 +232,7 @@
 {
   "filter": {
     "date": {
-      "from": "2021-11-01T00:00:00.000 ",
+      "from": "2021-11-01T00:00:00.000Z",
       "to": "2021-11-02T00:00:00.000Z"
     },
     "operation_type": [],
@@ -268,9 +268,11 @@
   "result": {
     "operations": [
       {
-        "operation_id": 1140118218784,
-        "operation_type": "Marketplac \"operation_date\": ",
-        "operation_type_name": "Услуг \"delivery_charge\": 0",
+        "operation_id": 11401182187840,
+        "operation_type": "MarketplaceMarketingActionCostOperation",
+        "operation_date": "2021-11-01 00:00:00",
+        "operation_type_name": "Услуги продвижения товаров",
+        "delivery_charge": 0,
         "return_delivery_charge": 0,
         "accruals_for_sale": 0,
         "sale_commission": 0,

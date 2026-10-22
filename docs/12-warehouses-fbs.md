@@ -355,6 +355,7 @@
 
 **Тело запроса** (`application/json`):
 - **address_coordinates** `object` *обязательный* — Координаты адреса склада.
+- **courier_return_warehouse_info** `object` — Информация о возврате на склад для курьера.
 - **cut_in_time** `integer <int64>` *обязательный* — Время на приём заказов в минутах. Например, если вы передадите 3000 , приём заказов будет завершён через 50 часов с момента передачи.
 - **drop_off_point_id** `integer <int64>` — Идентификатор drop-off пункта.
 - **first_mile_type** `string` *обязательный* — Тип первой мили: PICK_UP — отгрузка заказов курьеру; DROP_OFF — отгрузка заказов в пункт приёма.. Enum: `"PICK_UP"`, `"DROP_OFF"`.
@@ -364,7 +365,7 @@
 - **phone** `string` *обязательный* — Номер телефона склада. Укажите в формате +7(XXX)XXX-XX-XX.
 - **timeslot_id** `integer <int64>` *обязательный* — Идентификатор таймслота.
 - **return_point_id** `integer <int64>` — Идентификатор пункта возврата. Получите значение параметра методом /v1/warehouse/fbs/create/return- point/list.
-- **working_days** `Array of strings` — Рабочие дни склада: MONDAY — понедельник, TUESDAY — вторник, WEDNESDAY — среда, THURSDAY — четверг, FRIDAY — пятница, SATURDAY — суббота, SUNDAY — воскресенье.. Enum: `"MONDAY"`, `"TUESDAY"`, `"WEDNESDAY"`, `"THURSDAY"`, `"FRIDAY"`, `"SATURDAY"`, `"SUNDAY"`.
+- **working_days** `Array of strings <= 7 items` — Рабочие дни склада: MONDAY — понедельник, TUESDAY — вторник, WEDNESDAY — среда, THURSDAY — четверг, FRIDAY — пятница, SATURDAY — суббота, SUNDAY — воскресенье.. Enum: `"MONDAY"`, `"TUESDAY"`, `"WEDNESDAY"`, `"THURSDAY"`, `"FRIDAY"`, `"SATURDAY"`, `"SUNDAY"`.
 
 **Пример запроса:**
 
@@ -373,6 +374,11 @@
   "address_coordinates": {
     "latitude": 55.69626,
     "longitude": 37.42686
+  },
+  "courier_return_warehouse_info": {
+    "comment": "Комментарий",
+    "courier_return_warehouse_id": 0,
+    "is_courier_return_warehouse_match": false
   },
   "first_mile_type": "DROP_OFF",
   "drop_off_point_id": 1020002487458000,
@@ -429,7 +435,7 @@
 - **address_coordinates** `object` *обязательный* — Координаты склада.
 - **name** `string` — Название склада.
 - **options** `object` — Параметры склада.
-- **phone** `string+7(XXX)XXX-XX-XX` — Номер телефона склада.
+- **phone** `string` — Номер телефона склада. Укажите в формате +7(XXX)XXX-XX-XX.
 - **warehouse_id** `integer <int64>` *обязательный* — Идентификатор склада.
 - **working_days** `Array of strings` — Рабочие дни склада: MONDAY — понедельник; TUESDAY — вторник; WEDNESDAY — среда; THURSDAY — четверг; FRIDAY — пятница; SATURDAY — суббота; SUNDAY — воскресенье.. Enum: `"MONDAY"`, `"TUESDAY"`, `"WEDNESDAY"`, `"THURSDAY"`, `"FRIDAY"`, `"SATURDAY"`, `"SUNDAY"`.
 
@@ -485,6 +491,7 @@
 `POST /v1/warehouse/fbs/first-mile/update`
 
 **Тело запроса** (`application/json`):
+- **courier_return_warehouse_info** `object` — Информация о возврате на склад для курьера.
 - **cut_in_time** `integer <int64>` *обязательный* — Время на приём заказов в минутах. Например, если вы передадите 3000 , приём заказов будет завершён через 50 часов с момента передачи.
 - **drop_off_point_id** `integer <int64>` — Идентификатор drop-off пункта. Если first_mile_type = DROP_OFF , параметр обязательный.
 - **first_mile_type** `string` *обязательный* — Тип первой мили: PICK_UP — отгрузка заказов курьеру; DROP_OFF — отгрузка заказов в пункт приёма.. Enum: `"PICK_UP"`, `"DROP_OFF"`.
@@ -496,6 +503,11 @@
 
 ```json
 {
+  "courier_return_warehouse_info": {
+    "comment": "Комментарий",
+    "courier_return_warehouse_id": 0,
+    "is_courier_return_warehouse_match": false
+  },
   "first_mile_type": "DROP_OFF",
   "drop_off_point_id": 0,
   "cut_in_time": 0,
@@ -774,6 +786,8 @@
 | `default` | Ошибка |
 
 **Схема ответа (`200`):**
+- **is_courier_return_mile_available** `boolean` — true , если нужно установить возвратную милю для вывоза курьером.
+- **is_dropoff_return_mile_available** `boolean` — true , если нужно установить возвратную милю для вывоза из пункта выдачи.
 - **should_set_return_mile** `boolean` — Признак, что необходимо установить возвратную милю.
 - **unavailability_reasons** `Array of strings` — Причины, по которым нельзя установить возвратную милю.
 
@@ -781,6 +795,8 @@
 
 ```json
 {
+  "is_courier_return_mile_available": true,
+  "is_dropoff_return_mile_available": true,
   "should_set_return_mile": true,
   "unavailability_reasons": [
     "string"

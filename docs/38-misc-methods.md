@@ -4,68 +4,6 @@
 
 Все методы требуют заголовки `Client-Id` (идентификатор клиента) и `Api-Key` (API-ключ), если явно не указано иное.
 
-### Получить информацию о стоках на складах FBO
-
-## Получить информацию о стоках на складах FBO
-
-`POST /v1/product/info/stocks-by-warehouse/fbo`
-
-Передайте в запросе offer_ids или skus . Вы можете оставить обратную связь по этому методу в комментариях к обсуждению в сообществе разработчиков Ozon for dev.
-
-**Тело запроса** (`application/json`):
-- **cursor** `string` — Указатель для выборки следующих данных.
-- **limit** `integer <uint64>` *обязательный* — Количество значений в ответе.
-- **offer_ids** `Array of strings` — Идентификатор товаров в системе продавца — артикул.
-- **skus** `Array of strings <int64>` — Идентификатор товаров в системе Ozon — SKU.
-
-**Пример запроса:**
-
-```json
-{
-  "cursor": "string",
-  "limit": 0,
-  "offer_ids": [
-    "string"
-  ],
-  "skus": [
-    "string"
-  ]
-}
-```
-
-**Ответы:**
-
-| Код | Описание |
-|---|---|
-| `200` | Информация о стоках. |
-| `default` | Ошибка. |
-
-**Схема ответа (`200`):**
-- **cursor** `string` — Указатель для выборки следующих данных.
-- **has_next** `boolean` — true , если в ответе вернулись не все значения.
-- **products** `Array of objects` — Остатки товаров FBO.
-
-**Пример ответа (`200`):**
-
-```json
-{
-  "cursor": "string",
-  "has_next": true,
-  "products": [
-    {
-      "offer_id": "string",
-      "present": 0,
-      "product_id": 0,
-      "reserved": 0,
-      "sku": 0,
-      "warehouse_id": 0
-    }
-  ]
-}
-```
-
-
----
 
 ## Управление остатками
 
@@ -545,7 +483,7 @@
 Возвращает информацию о скидке на товар в зависимости от его количества в заказе. Вы можете оставить обратную связь о работе метода в комментариях в сообществе разработчиков Ozon for dev.
 
 **Тело запроса** (`application/json`):
-- **skus** `Array of strings <int64>` *обязательный* — Список идентификаторов товара в системе Ozon — SKU.
+- **skus** `Array of strings <int64> <= 5000 items` *обязательный* — Список идентификаторов товара в системе Ozon — SKU.
 
 **Пример запроса:**
 
@@ -741,7 +679,7 @@
   - **approved_quantity_max** `integer <uint64>` — Максимальное одобренное количество товаров.
   - **auto_moderated_info** `object` — Информация об автоматической модерации заявки.
   - **created_at** `string <date-time>` — Дата создания заявки.
-  - **edited_till** `string <date-time> YYYY-MM-DD` — Время для изменения решения.
+  - **edited_till** `string <date-time>` — Время для изменения решения.
   - **edited_till_duration** `integer <uint64>` — Время для изменения решения в секундах.
   - **email** `string` — Электронный адрес сотрудника продавца, который обработал заявку.
   - **end_at** `string <date-time>` — Время окончания действия заявки.
@@ -1001,7 +939,7 @@
 Вы можете оставить обратную связь о работе метода в комментариях в сообществе разработчиков Ozon for dev.
 
 **Тело запроса** (`application/json`):
-- **posting_numbers** `Array of strings` *обязательный* — Номера отправлений.
+- **posting_numbers** `Array of strings [ 1 .. 200 ] items` *обязательный* — Номера отправлений.
 
 **Пример запроса:**
 
@@ -1099,7 +1037,7 @@
 Если укажете last_id в запросе, передайте значение date из предыдущего запроса, иначе вернётся ошибка 400 Bad Request . Вы можете оставить обратную связь о работе метода в комментариях в сообществе разработчиков Ozon for dev.
 
 **Тело запроса** (`application/json`):
-- **date** `string YYYY-MM-DD` *обязательный* — Дата начислений. Самая ранняя — 1 января 2022 года. Если укажете last_id , передайте значение date из предыдущего запроса.
+- **date** `string` *обязательный* — Дата начислений. Самая ранняя — 1 января 2022 года. Если укажете last_id , передайте значение date из предыдущего запроса. Формат даты: YYYY-MM-DD.
 - **last_id** `string` *обязательный* — Идентификатор последнего значения на странице. При первом запросе оставьте это поле пустым. Чтобы получить следующие значения, укажите last_id из ответа предыдущего запроса. Срок жизни идентификатора — 15 минут.
 
 **Пример запроса:**
@@ -1222,7 +1160,7 @@
 Вы можете оставить обратную связь о работе метода в комментариях в сообществе разработчиков Ozon for dev.
 
 **Тело запроса** (`application/json`):
-- **skus** `Array of strings <int64>` — Идентификаторы товаров в системе Ozon — SKU.
+- **skus** `Array of strings <int64> [ 1 .. 350 ] items` — Идентификаторы товаров в системе Ozon — SKU.
 
 **Пример запроса:**
 
@@ -1452,7 +1390,9 @@
 
 **Схема ответа (`200`):**
 - **option** `Array of objects` — Параметры для создания сертификата.
-  - **name** `string` *обязательный* — Название параметра сертификата: NAME — название; CERTIFICATE_TYPE — тип; NUMBER — номер; FILES — файл с сертификатом в кодировке Base64; CERTIFICATE_COUNTRY — страна выдачи; ACCORDANCE_TYPE — стандарт сертификации; SKUS — список идентификаторов товара в системе Ozon, SKU; ISSUE_DATE — дата выпуска; EXPIRED_DATE — дата истечения; LINK_TO_REGISTRY — ссылка на государственный реестр; PRODUCT_TYPE — тип товаров; INFINITE — бессрочность. true , если параметр обязательный.
+  - **name** `string` — Название параметра сертификата: NAME — название; CERTIFICATE_TYPE — тип; NUMBER — номер; FILES — файл с сертификатом в кодировке Base64; CERTIFICATE_COUNTRY — страна выдачи; ACCORDANCE_TYPE — стандарт сертификации; SKUS — список идентификаторов товара в системе Ozon, SKU; ISSUE_DATE — дата выпуска; EXPIRED_DATE — дата истечения; LINK_TO_REGISTRY — ссылка на государственный реестр; PRODUCT_TYPE — тип товаров; INFINITE — бессрочность.
+  - **required** `boolean` — true , если параметр обязательный.
+  - **variants** `Array of objects` — Список возможных значений.
 
 **Пример ответа (`200`):**
 
@@ -1461,7 +1401,13 @@
   "option": [
     {
       "name": "string",
-      "required": true
+      "required": true,
+      "variants": [
+        {
+          "name": "string",
+          "value": "string"
+        }
+      ]
     }
   ]
 }
@@ -1484,21 +1430,21 @@
 ```json
 {
   "params": {
-    "accordance_type": "UNKNOWN",
-    "certificate_country": "st",
-    "certificate_type": "UNKNOWN",
+    "accordance_type": "SAFETY_DATA_SHEET",
+    "certificate_country": "RU",
+    "certificate_type": "SAFETY_DATA_SHEET",
     "expired_date": {
       "date": {
-        "day": 0,
-        "month": 0,
-        "year": 0
+        "day": 1,
+        "month": 1,
+        "year": 2027
       },
-      "infinite": true
+      "infinite": false
     },
     "files": [
       {
         "file_content": "string",
-        "name": "string"
+        "name": "file.pdf"
       }
     ],
     "issue_date": "2019-08-24T14:15:22Z",
@@ -1526,7 +1472,9 @@
 
 **Схема ответа (`200`):**
 - **params** `Array of objects` — Параметры для создания сертификата.
-  - **name** `string` *обязательный* — Название параметра сертификата: NAME — название; CERTIFICATE_TYPE — тип; NUMBER — номер; FILES — файл с сертификатом в кодировке Base64; CERTIFICATE_COUNTRY — страна выдачи; ACCORDANCE_TYPE — стандарт сертификации; SKUS — список идентификаторов товара в системе Ozon, SKU; ISSUE_DATE — дата выпуска; EXPIRED_DATE — дата истечения; LINK_TO_REGISTRY — ссылка на государственный реестр; PRODUCT_TYPE — тип товаров; INFINITE — бессрочность. true , если параметр обязательный.
+  - **name** `string` — Название параметра сертификата: NAME — название; CERTIFICATE_TYPE — тип; NUMBER — номер; FILES — файл с сертификатом в кодировке Base64; CERTIFICATE_COUNTRY — страна выдачи; ACCORDANCE_TYPE — стандарт сертификации; SKUS — список идентификаторов товара в системе Ozon, SKU; ISSUE_DATE — дата выпуска; EXPIRED_DATE — дата истечения; LINK_TO_REGISTRY — ссылка на государственный реестр; PRODUCT_TYPE — тип товаров; INFINITE — бессрочность.
+  - **required** `boolean` — true , если параметр обязательный.
+  - **variants** `Array of objects` — Список возможных значений.
 
 **Пример ответа (`200`):**
 
@@ -1535,7 +1483,13 @@
   "params": [
     {
       "name": "string",
-      "required": true
+      "required": true,
+      "variants": [
+        {
+          "name": "string",
+          "value": "string"
+        }
+      ]
     }
   ]
 }

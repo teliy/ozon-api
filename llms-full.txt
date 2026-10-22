@@ -2498,7 +2498,7 @@ WEIGHT_IS_REQUIRED — если вы не передали вес для вес�
 Вы можете отправить не больше 10 запросов в секунду. Подробнее о зонах размещения в Базе знаний продавца
 
 **Тело запроса** (`application/json`):
-- **skus** `Array of strings <int64>` *обязательный* — Список идентификаторов товаров в системе Ozon — SKU.
+- **skus** `Array of strings <int64> [ 1 .. 150 ] items` *обязательный* — Список идентификаторов товаров в системе Ozon — SKU.
 
 **Пример запроса:**
 
@@ -2839,7 +2839,7 @@ items.attributes.values.value  с id = 23500 .
 Метод создаёт копию карточки товара с указанным SKU. Метод копирует только карточку товара другого продавца, скопировать свой товар не получится. Создать копию не получится, если продавец запретил копирование своих карточек. Нельзя: обновить товар по SKU; копировать товар, если вы самозанятый. Продавцам из России и СНГ можно копировать товары любой страны. У метода есть лимит на количество операций c товарами в минуту и в сутки. Если вы превысите лимит, вернётся ошибка 429 с описанием в поле message и заголовками: Item-Retry-After — время в минутах до обновления лимита. Для суточного лимита — время до 03:00 по московскому времени. Item-Rate-Limit-Remaining — остаток операций до следующего сброса лимита. Чтобы узнать лимит, используйте /v4/product/info/limit.
 
 **Тело запроса** (`application/json`):
-- **items** `Array of objects` — Информация о товарах.
+- **items** `Array of objects <= 1000 items` — Информация о товарах.
 
 **Пример запроса:**
 
@@ -2897,7 +2897,7 @@ items.attributes.values.value  с id = 23500 .
 Метод позволяет добавлять характеристики и изменять их значения. Изменятся только характеристики, которые вы указали в запросе. Удалить уже заполненные характеристики не получится. Для полного обновления характеристик используйте /v3/product/import. У метода есть лимит на количество операций c товарами в минуту и в сутки. Если вы превысите лимит, вернётся ошибка 429 с описанием в поле message и заголовками: Item-Retry-After — время в минутах до обновления лимита. Для суточного лимита — время до 03:00 по московскому времени. Item-Rate-Limit-Remaining — остаток операций до следующего сброса лимита. Чтобы узнать лимит, используйте /v4/product/info/limit.
 
 **Тело запроса** (`application/json`):
-- **items** `Array of objects` — Товары и характеристики, которые нужно обновить.
+- **items** `Array of objects <= 100 items` — Товары и характеристики, которые нужно обновить.
 
 **Пример запроса:**
 
@@ -2981,7 +2981,7 @@ items.color_image .
 ```
 
 **Тело запроса** (`application/json`):
-- **items** `Array of objects` — Информация о товарах.
+- **items** `Array of objects <= 100 items` — Информация о товарах.
 
 **Пример запроса:**
 
@@ -3059,7 +3059,7 @@ result.items.status  вернётся skipped .
 
 **Тело запроса** (`application/json`):
 - **color_image** `string` — Маркетинговый цвет.
-- **images** `Array of strings` — Массив ссылок на изображения. Изображения в массиве расположены в порядке их расположения на сайте. Первое изображение в массиве будет главным.
+- **images** `Array of strings <= 50 items` — Массив ссылок на изображения. Изображения в массиве расположены в порядке их расположения на сайте. Первое изображение в массиве будет главным.
 - **product_id** `integer <int64>` *обязательный* — Идентификатор товара в системе Ozon — product_id .
 
 **Пример запроса:**
@@ -3968,7 +3968,7 @@ result.items.status  вернётся skipped .
 Метод для изменения offer_id , привязанных к товарам. Вы можете изменить несколько offer_id . Если offer_id уже используется для другого товара, вернётся ошибка OFFER_ID_ALREADY_EXISTS . Подробнее о требованиях к артикулам в Базе знаний продавца У метода есть лимит на количество операций c товарами в минуту. Если вы превысите лимит, вернётся ошибка 429 с описанием в поле message и заголовками: Item-Retry-After — время в минутах до обновления лимита. Для суточного лимита — время до 03:00 по московскому времени. Item-Rate-Limit-Remaining — остаток операций до следующего сброса лимита. Чтобы узнать лимит, используйте /v4/product/info/limit.
 
 **Тело запроса** (`application/json`):
-- **update_offer_id** `Array of objects` *обязательный* — Список пар с новыми и старыми значениями артикулов.
+- **update_offer_id** `Array of objects [ 1 .. 25 ] items` *обязательный* — Список пар с новыми и старыми значениями артикулов.
 
 **Пример запроса:**
 
@@ -4275,7 +4275,7 @@ autoarchive_restore_failed .
 `POST /v2/product/pictures/info`
 
 **Тело запроса** (`application/json`):
-- **product_id** `Array of strings <int64>` *обязательный* — Список идентификаторов товаров в системе Ozon — product_id .
+- **product_id** `Array of strings <int64> <= 1000 items` *обязательный* — Список идентификаторов товаров в системе Ozon — product_id .
 
 **Пример запроса:**
 
@@ -4473,7 +4473,7 @@ autoarchive_restore_failed .
 Если у товара есть штрихкод, который не указан в системе Ozon, привяжите его с помощью этого метода. Чтобы сгенерировать штрихкод, используйте метод /v1/barcode/generate. Подробнее о требованиях к штрихкодам в Базе знаний продавца На одном товаре может быть до 100 штрихкодов. С одного аккаунта продавца можно использовать метод не больше 20 раз в минуту.
 
 **Тело запроса** (`application/json`):
-- **barcodes** `Array of objects` *обязательный* — Список штрихкодов и товаров.
+- **barcodes** `Array of objects <= 100 items` *обязательный* — Список штрихкодов и товаров.
 
 **Пример запроса:**
 
@@ -4866,8 +4866,8 @@ autoarchive_restore_failed .
 **Тело запроса** (`application/json`):
 - **cursor** `string` — Указатель для выборки следующих данных.
 - **limit** `integer <uint64>` *обязательный* — Количество значений в ответе.
-- **offer_id** `Array of strings` — Идентификаторы товаров в системе продавца — артикул.
-- **sku** `Array of strings <int64>` *обязательный* — Идентификаторы товаров в системе Ozon — SKU.
+- **offer_id** `Array of strings <= 1000 items` — Идентификаторы товаров в системе продавца — артикул.
+- **sku** `Array of strings <int64> <= 1000 items` *обязательный* — Идентификаторы товаров в системе Ozon — SKU.
 
 **Пример запроса:**
 
@@ -5002,7 +5002,7 @@ action_price_enabled_min_price_missing .
 ```
 
 **Тело запроса** (`application/json`):
-- **prices** `Array of objects` — Информация о ценах товаров.
+- **prices** `Array of objects <= 1000 items` — Информация о ценах товаров.
 
 **Пример запроса:**
 
@@ -5069,7 +5069,7 @@ action_price_enabled_min_price_missing .
 Минимальная цена действует 30 дней после установки. После этого настройка выключается. Вы можете продлить её: вызовите метод повторно и укажите product_ids .
 
 **Тело запроса** (`application/json`):
-- **product_ids** `Array of strings <int64>` — Список идентификаторов товаров в системе Ozon — product_id .
+- **product_ids** `Array of strings <int64> <= 1000 items` — Список идентификаторов товаров в системе Ozon — product_id .
 
 **Пример запроса:**
 
@@ -5835,7 +5835,7 @@ action_price_enabled_min_price_missing .
 
 **Тело запроса** (`application/json`):
 - **action_id** `number <double>` *обязательный* — Идентификатор акции. Можно получить с помощью метода /v1/actions.
-- **products** `Array of objects` *обязательный* — Список товаров.
+- **products** `Array of objects <= 1000 items` *обязательный* — Список товаров.
 
 **Пример запроса:**
 
@@ -5888,7 +5888,7 @@ action_price_enabled_min_price_missing .
 
 **Тело запроса** (`application/json`):
 - **action_id** `integer <uint64>` *обязательный* — Идентификатор акции. Получите методом /v1/actions.
-- **products** `Array of objects` *обязательный* — Список товаров.
+- **products** `Array of objects <= 1000 items` *обязательный* — Список товаров.
 
 **Пример запроса:**
 
@@ -5951,7 +5951,7 @@ action_price_enabled_min_price_missing .
 
 **Тело запроса** (`application/json`):
 - **action_id** `integer <uint64>` *обязательный* — Идентификатор акции. Получите методом /v1/actions.
-- **product_ids** `Array of strings <uint64>` *обязательный* — Список идентификаторов товаров в системе Ozon — product_id .
+- **product_ids** `Array of strings <uint64> <= 1000 items` *обязательный* — Список идентификаторов товаров в системе Ozon — product_id .
 
 **Пример запроса:**
 
@@ -6529,7 +6529,7 @@ action_price_enabled_min_price_missing .
 **Тело запроса** (`application/json`):
 - **action_id** `integer <uint64>` *обязательный* — Идентификатор акции.
 - **auto_add_date** `string <date-time>` *обязательный* — Дата и время автодобавления товаров в акцию из параметра result.auto_add_dates в ответе метода /v1/actions.
-- **product_ids** `Array of strings <uint64>` *обязательный* — Идентификаторы товаров в системе Ozon — product_id .
+- **product_ids** `Array of strings <uint64> <= 1000 items` *обязательный* — Идентификаторы товаров в системе Ozon — product_id .
 
 **Пример запроса:**
 
@@ -6579,7 +6579,7 @@ action_price_enabled_min_price_missing .
 **Тело запроса** (`application/json`):
 - **action_id** `integer <uint64>` *обязательный* — Идентификатор акции.
 - **auto_add_date** `string <date-time>` *обязательный* — Дата и время автодобавления товаров в акцию из параметра result.auto_add_dates в ответе метода /v1/actions.
-- **products** `Array of objects` *обязательный* — Список товаров, которые нужно добавить или обновить в автодобавлении.
+- **products** `Array of objects [ 1 .. 1000 ] items` *обязательный* — Список товаров, которые нужно добавить или обновить в автодобавлении.
 
 **Пример запроса:**
 
@@ -7596,7 +7596,7 @@ action_price_enabled_min_price_missing .
 **Тело запроса** (`application/json`):
 - **certificate_id** `integer <int64>` *обязательный* — Идентификатор сертификата, который был присвоен при его загрузке.
 - **product_id** `Array of integers <int64>` *обязательный* — Массив идентификаторов товаров в системе Ozon — product_id , к которым относится этот сертификат.
-- **skus** `Array of strings <int64>` — Список идентификаторов товаров в системе Ozon — SKU, к которым относится этот сертификат.
+- **skus** `Array of strings <int64> <= 1000 items` — Список идентификаторов товаров в системе Ozon — SKU, к которым относится этот сертификат.
 
 **Пример запроса:**
 
@@ -7905,7 +7905,7 @@ action_price_enabled_min_price_missing .
 **Тело запроса** (`application/json`):
 - **certificate_id** `integer <int32>` *обязательный* — Идентификатор сертификата.
 - **product_id** `Array of strings <int64>` *обязательный* — Список идентификаторов товара в системе Ozon — product_id , которые нужно отвязать от сертификата.
-- **skus** `Array of strings <int64>` — Список идентификаторов товаров в системе Ozon — SKU, которые нужно отвязать от сертификата.
+- **skus** `Array of strings <int64> <= 1000 items` — Список идентификаторов товаров в системе Ozon — SKU, которые нужно отвязать от сертификата.
 
 **Пример запроса:**
 
@@ -9091,6 +9091,7 @@ action_price_enabled_min_price_missing .
 
 **Тело запроса** (`application/json`):
 - **address_coordinates** `object` *обязательный* — Координаты адреса склада.
+- **courier_return_warehouse_info** `object` — Информация о возврате на склад для курьера.
 - **cut_in_time** `integer <int64>` *обязательный* — Время на приём заказов в минутах. Например, если вы передадите 3000 , приём заказов будет завершён через 50 часов с момента передачи.
 - **drop_off_point_id** `integer <int64>` — Идентификатор drop-off пункта.
 - **first_mile_type** `string` *обязательный* — Тип первой мили: PICK_UP — отгрузка заказов курьеру; DROP_OFF — отгрузка заказов в пункт приёма.. Enum: `"PICK_UP"`, `"DROP_OFF"`.
@@ -9100,7 +9101,7 @@ action_price_enabled_min_price_missing .
 - **phone** `string` *обязательный* — Номер телефона склада. Укажите в формате +7(XXX)XXX-XX-XX.
 - **timeslot_id** `integer <int64>` *обязательный* — Идентификатор таймслота.
 - **return_point_id** `integer <int64>` — Идентификатор пункта возврата. Получите значение параметра методом /v1/warehouse/fbs/create/return- point/list.
-- **working_days** `Array of strings` — Рабочие дни склада: MONDAY — понедельник, TUESDAY — вторник, WEDNESDAY — среда, THURSDAY — четверг, FRIDAY — пятница, SATURDAY — суббота, SUNDAY — воскресенье.. Enum: `"MONDAY"`, `"TUESDAY"`, `"WEDNESDAY"`, `"THURSDAY"`, `"FRIDAY"`, `"SATURDAY"`, `"SUNDAY"`.
+- **working_days** `Array of strings <= 7 items` — Рабочие дни склада: MONDAY — понедельник, TUESDAY — вторник, WEDNESDAY — среда, THURSDAY — четверг, FRIDAY — пятница, SATURDAY — суббота, SUNDAY — воскресенье.. Enum: `"MONDAY"`, `"TUESDAY"`, `"WEDNESDAY"`, `"THURSDAY"`, `"FRIDAY"`, `"SATURDAY"`, `"SUNDAY"`.
 
 **Пример запроса:**
 
@@ -9109,6 +9110,11 @@ action_price_enabled_min_price_missing .
   "address_coordinates": {
     "latitude": 55.69626,
     "longitude": 37.42686
+  },
+  "courier_return_warehouse_info": {
+    "comment": "Комментарий",
+    "courier_return_warehouse_id": 0,
+    "is_courier_return_warehouse_match": false
   },
   "first_mile_type": "DROP_OFF",
   "drop_off_point_id": 1020002487458000,
@@ -9165,7 +9171,7 @@ action_price_enabled_min_price_missing .
 - **address_coordinates** `object` *обязательный* — Координаты склада.
 - **name** `string` — Название склада.
 - **options** `object` — Параметры склада.
-- **phone** `string+7(XXX)XXX-XX-XX` — Номер телефона склада.
+- **phone** `string` — Номер телефона склада. Укажите в формате +7(XXX)XXX-XX-XX.
 - **warehouse_id** `integer <int64>` *обязательный* — Идентификатор склада.
 - **working_days** `Array of strings` — Рабочие дни склада: MONDAY — понедельник; TUESDAY — вторник; WEDNESDAY — среда; THURSDAY — четверг; FRIDAY — пятница; SATURDAY — суббота; SUNDAY — воскресенье.. Enum: `"MONDAY"`, `"TUESDAY"`, `"WEDNESDAY"`, `"THURSDAY"`, `"FRIDAY"`, `"SATURDAY"`, `"SUNDAY"`.
 
@@ -9221,6 +9227,7 @@ action_price_enabled_min_price_missing .
 `POST /v1/warehouse/fbs/first-mile/update`
 
 **Тело запроса** (`application/json`):
+- **courier_return_warehouse_info** `object` — Информация о возврате на склад для курьера.
 - **cut_in_time** `integer <int64>` *обязательный* — Время на приём заказов в минутах. Например, если вы передадите 3000 , приём заказов будет завершён через 50 часов с момента передачи.
 - **drop_off_point_id** `integer <int64>` — Идентификатор drop-off пункта. Если first_mile_type = DROP_OFF , параметр обязательный.
 - **first_mile_type** `string` *обязательный* — Тип первой мили: PICK_UP — отгрузка заказов курьеру; DROP_OFF — отгрузка заказов в пункт приёма.. Enum: `"PICK_UP"`, `"DROP_OFF"`.
@@ -9232,6 +9239,11 @@ action_price_enabled_min_price_missing .
 
 ```json
 {
+  "courier_return_warehouse_info": {
+    "comment": "Комментарий",
+    "courier_return_warehouse_id": 0,
+    "is_courier_return_warehouse_match": false
+  },
   "first_mile_type": "DROP_OFF",
   "drop_off_point_id": 0,
   "cut_in_time": 0,
@@ -9510,6 +9522,8 @@ action_price_enabled_min_price_missing .
 | `default` | Ошибка |
 
 **Схема ответа (`200`):**
+- **is_courier_return_mile_available** `boolean` — true , если нужно установить возвратную милю для вывоза курьером.
+- **is_dropoff_return_mile_available** `boolean` — true , если нужно установить возвратную милю для вывоза из пункта выдачи.
 - **should_set_return_mile** `boolean` — Признак, что необходимо установить возвратную милю.
 - **unavailability_reasons** `Array of strings` — Причины, по которым нельзя установить возвратную милю.
 
@@ -9517,6 +9531,8 @@ action_price_enabled_min_price_missing .
 
 ```json
 {
+  "is_courier_return_mile_available": true,
+  "is_dropoff_return_mile_available": true,
   "should_set_return_mile": true,
   "unavailability_reasons": [
     "string"
@@ -9736,7 +9752,7 @@ action_price_enabled_min_price_missing .
 - **delivery_method** `object` *обязательный* — Информация о методе доставки «Партнёры Ozon».
 - **min_order_value** `integer <int64>` — Минимальная стоимость заказа.
 - **name** `string` *обязательный* — Название склада.
-- **phone** `string+7(XXX)XXX-XX-XX` *обязательный* — Номер телефона склада.
+- **phone** `string` *обязательный* — Номер телефона склада. Укажите в формате +7(XXX)XXX-XX-XX.
 - **timetable_warehouse** `object` *обязательный* — Расписание работы склада.
 
 **Пример запроса:**
@@ -9842,7 +9858,7 @@ action_price_enabled_min_price_missing .
 - **is_auto_assembly** `boolean` — true , если на складе доступна автосборка.
 - **min_order_value** `integer <int64>` — Минимальная стоимость заказа.
 - **name** `string` — Название склада.
-- **phone** `string+7(XXX)XXX-XX-XX` — Номер телефона склада.
+- **phone** `string` — Номер телефона склада. Укажите в формате +7(XXX)XXX-XX-XX.
 - **timetable_warehouse** `object` — Расписание работы склада.
 - **warehouse_id** `integer <int64>` *обязательный* — Идентификатор склада.
 
@@ -9924,7 +9940,7 @@ action_price_enabled_min_price_missing .
 **Тело запроса** (`application/json`):
 - **courier_comment** `string` — Комментарий для курьера.
 - **is_courier_phone_same_as_warehouse** `boolean` — true , если номер телефона курьера совпадает с номером телефона склада. Если is_courier_phone_same_as_warehous e = true , текущий номер телефона будет указан в courier_phones .
-- **courier_phones** `Array of strings` — Номера телефонов для связи с курьером.
+- **courier_phones** `Array of strings <= 3 items` — Номера телефонов для связи с курьером.
 - **cut_in** `integer <int64>` — Время сборки.
 - **deliver_to_pvz** `boolean` — true , если доставка Ozon Express в пункт выдачи Ozon.
 - **delivery_costs** `object` — Расходы на доставку, которые вы готовы оплатить.
@@ -9997,7 +10013,7 @@ action_price_enabled_min_price_missing .
 - **delivery_method** `object` *обязательный* — Информация о методе доставки «Вы или сторонняя служба».
 - **min_order_value** `integer <int64>` — Минимальная стоимость заказа в рублях.
 - **name** `string` *обязательный* — Название склада.
-- **phone** `string+7(XXX)XXX-XX-XX` *обязательный* — Номер телефона склада.
+- **phone** `string` *обязательный* — Номер телефона склада. Укажите в формате +7(XXX)XXX-XX-XX.
 - **timetable_warehouse** `object` *обязательный* — Расписание работы склада.
 
 **Пример запроса:**
@@ -11935,7 +11951,7 @@ driver_pickup  — у водителя,
 > **ВНИМАНИЕ:** Если вы работаете по схеме rFBS или rFBS Express, изучите процесс печати этикетки в Базе знаний продавца.
 
 **Тело запроса** (`application/json`):
-- **posting_numbers** `Array of strings` *обязательный* — Номера отправлений, для которых нужны этикетки.
+- **posting_numbers** `Array of strings [ 1 .. 1000 ] items` *обязательный* — Номера отправлений, для которых нужны этикетки.
 
 **Пример запроса:**
 
@@ -13465,7 +13481,7 @@ cancel_reason_message .
 Используйте метод, чтобы получить товарный состав поставки или черновика заявки на поставку. Одним вызовом метода можно получить состав одной поставки или черновика заявки.
 
 **Тело запроса** (`application/json`):
-- **bundle_ids** `Array of strings` *обязательный* — Идентификаторы товарного состава поставки. Можно получить в методе /v3/supply-order/get.
+- **bundle_ids** `Array of strings [ 1 .. 100 ] items` *обязательный* — Идентификаторы товарного состава поставки. Можно получить в методе /v3/supply-order/get.
 - **is_asc** `boolean` — true , чтобы сортировать по возрастанию.
 - **item_tags_calculation** `object` — Список складов для расчёта товарных тегов.
 - **last_id** `string` — Идентификатор последнего значения SKU на странице.
@@ -13613,7 +13629,7 @@ cancel_reason_message .
 Учитываются заявки с поставкой на конкретный склад и через виртуальный распределительный центр (вРЦ).
 
 **Тело запроса** (`application/json`):
-- **order_ids** `Array of strings <int64>` *обязательный* — Идентификаторы заявок на поставку.
+- **order_ids** `Array of strings <int64> <= 50 items` *обязательный* — Идентификаторы заявок на поставку.
 
 **Пример запроса:**
 
@@ -14510,7 +14526,7 @@ cancel_reason_message .
 > **ВНИМАНИЕ:** Черновик заявки на поставку не отображается в личном кабинете продавца и доступен 30 минут.
 
 **Тело запроса** (`application/json`):
-- **clusters_info** `Array of objects` *обязательный* — Информация о кластерах.
+- **clusters_info** `Array of objects <= 20 items` *обязательный* — Информация о кластерах.
 - **deletion_sku_mode** `string` *обязательный* — Режим удаления SKU, которые не попали в поставку. Возможные значения: PARTIAL — система удалит только те единицы SKU, которые не прошли проверку; FULL — система удалит все единицы SKU, если хотя бы одна единица этого SKU не прошла проверку.. Enum: `"FULL"`, `"PARTIAL"`.
 - **delivery_info** `object` *обязательный* — Информация о доставке.
 
@@ -14686,11 +14702,11 @@ cancel_reason_message .
 `POST /v2/draft/timeslot/info`
 
 **Тело запроса** (`application/json`):
-- **date_from** `string YYYY-MM-DD` *обязательный* — Дата начала периода доступных таймслотов.
-- **date_to** `string YYYY-MM-DD` *обязательный* — Дата окончания периода доступных таймслотов. Максимальный период — 28 дней с текущей даты.
+- **date_from** `string` *обязательный* — Дата начала периода доступных таймслотов. Формат даты: YYYY-MM-DD.
+- **date_to** `string` *обязательный* — Дата окончания периода доступных таймслотов. Максимальный период — 28 дней с текущей даты. Формат даты: YYYY-MM-DD.
 - **draft_id** `integer <int64>` *обязательный* — Идентификатор черновика из метода /v2/draft/create/info.
 - **supply_type** `string` *обязательный* — Тип поставки: CROSSDOCK — кросс-докинг; DIRECT — прямая; MULTI_CLUSTER — для нескольких кластеров.. Enum: `"CROSSDOCK"`, `"DIRECT"`, `"MULTI_CLUSTER"`.
-- **selected_cluster_warehouses** `Array of objects` *обязательный* — Информация о кластере и складах в нём. Можно передать один кластер для кросс- докинговой и прямой поставки или список всех кластеров для поставки в несколько кластеров.
+- **selected_cluster_warehouses** `Array of objects <= 20 items` *обязательный* — Информация о кластере и складах в нём. Можно передать один кластер для кросс- докинговой и прямой поставки или список всех кластеров для поставки в несколько кластеров.
 
 **Пример запроса:**
 
@@ -14895,7 +14911,7 @@ cancel_reason_message .
 `POST /v1/cargoes/get`
 
 **Тело запроса** (`application/json`):
-- **supply_ids** `Array of strings <int64>` *обязательный* — Список идентификаторов поставок в заявке.
+- **supply_ids** `Array of strings <int64> <= 100 items` *обязательный* — Список идентификаторов поставок в заявке.
 
 **Пример запроса:**
 
@@ -17111,7 +17127,7 @@ first_mile_type = pickup  и integration_type = ozon_outsourced .
 
 **Тело запроса** (`application/json`):
 - **carriage_id** `integer <int64>` *обязательный* — Идентификатор перевозки.
-- **phone** `string +86(XXX)XXXX-XXXX` *обязательный* — Телефон продавца.
+- **phone** `string` *обязательный* — Телефон продавца. Укажите в формате +86(XXX)XXXX-XXXX.
 - **wechat_nickname** `string` — WeChat продавца.
 - **comment** `string` — Комментарий для курьера.
 
@@ -17283,7 +17299,7 @@ first_mile_type = pickup  и integration_type = ozon_outsourced .
 Возвращает список отправлений в акте по его идентификатору.
 
 **Тело запроса** (`application/json`):
-- **id** *обязательный* — Идентификатор акта. Получите значение параметра методом /v2/posting/fbs/act/list или /v1/carriage/create.
+- **id** `int <int64>` *обязательный* — Идентификатор акта. Получите значение параметра методом /v2/posting/fbs/act/list или /v1/carriage/create.
 
 **Пример запроса:**
 
@@ -17307,8 +17323,10 @@ first_mile_type = pickup  и integration_type = ozon_outsourced .
 **Схема ответа (`200`):**
 - **result** `Array of objects` — Информация об отправлениях.
   - **id** `integer <int64>` — Идентификатор акта.
+  - **is_blr_traceable** `boolean` — true , если товар прослеживаемый.
   - **multi_box_qty** `integer <int32>` — Количество коробок, в которые упакован товар.
   - **posting_number** `string` — Номер отправления.
+  - **scanit** `string` — Штрихкод ScanIt с этикетки.
   - **status** `string` — Статус отправления.
   - **seller_error** `string` — Расшифровка кода ошибки.
   - **updated_at** `string <date-time>` — Дата и время обновления записи об отправлении.
@@ -17322,16 +17340,23 @@ first_mile_type = pickup  и integration_type = ozon_outsourced .
   "result": [
     {
       "id": 0,
+      "is_blr_traceable": true,
       "multi_box_qty": 0,
       "posting_number": "string",
+      "scanit": "string",
       "status": "string",
       "seller_error": "string",
-      "updated_at": "2019-08-24T14:15: ",
-      "created_at": "2019-08-24T14:15: \"products\": [ { \"name\": \"string",
-      "offer_id": "string",
-      "price": "string",
-      "quantity": 0,
-      "sku": 0
+      "updated_at": "2019-08-24T14:15:22Z",
+      "created_at": "2019-08-24T14:15:22Z",
+      "products": [
+        {
+          "name": "string",
+          "offer_id": "string",
+          "price": "string",
+          "quantity": 0,
+          "sku": 0
+        }
+      ]
     }
   ]
 }
@@ -17647,11 +17672,11 @@ first_mile_type = pickup  и integration_type = ozon_outsourced .
 
 **Схема ответа (`200`):**
 - **result** `Array of objects` — Результат запроса.
-  - **id** — Идентификатор отгрузки.
-  - **delivery_method_id** — Идентификатор метода доставки.
+  - **id** `int <int64>` — Идентификатор отгрузки.
+  - **delivery_method_id** `int <int64>` — Идентификатор метода доставки.
   - **delivery_method_name** `string` — Название метода доставки.
   - **integration_type** `string` — Тип интеграции со службой доставки: ozon — доставка через Ozon логистику. 3pl — доставка внешней службой, продавец регистрирует заказ.
-  - **containers_count** — Число грузовых мест.
+  - **containers_count** `int <int32>` — Число грузовых мест.
   - **status** `string` — Статус отгрузки.
   - **departure_date** `string` — Дата отгрузки.
   - **created_at** `string <date-time>` — Дата создания записи об отгрузке.
@@ -17675,19 +17700,24 @@ first_mile_type = pickup  и integration_type = ozon_outsourced .
       "containers_count": null,
       "status": "string",
       "departure_date": "string",
-      "created_at": "2019-08-24T14:15: ",
-      "updated_at": "2019-08-24T14:15: \"act_type\": \"string",
+      "created_at": "2019-08-24T14:15:22Z",
+      "updated_at": "2019-08-24T14:15:22Z",
+      "act_type": "string",
       "is_partial": true,
-      "has_postings_for_next_carriage": "partial_num",
+      "has_postings_for_next_carriage": true,
+      "partial_num": 0,
       "related_docs": {
         "act_of_acceptance": {
-          "created_at": "2019-08-24 \"document_status\": "
+          "created_at": "2019-08-24T14:15:22Z",
+          "document_status": "string"
         },
         "act_of_mismatch": {
-          "created_at": "2019-08-24 \"document_status\": "
+          "created_at": "2019-08-24T14:15:22Z",
+          "document_status": "string"
         },
         "act_of_excess": {
-          "created_at": "2019-08-24 \"document_status\": "
+          "created_at": "2019-08-24T14:15:22Z",
+          "document_status": "string"
         }
       }
     }
@@ -17714,7 +17744,7 @@ first_mile_type = pickup  и integration_type = ozon_outsourced .
 
 **Тело запроса** (`application/json`):
 - **id** `integer <int64>` *обязательный* — Номер задания на формирование документов (также идентификатор перевозки) из метода POST /v2/posting/fbs/act/create.
-- **doc_type** — Тип электронного документа: act_of_acceptance — лист отгрузки, act_of_mismatch — акт о расхождениях, act_of_excess — акт об излишках, waybill — транспортная накладная.
+- **doc_type** `any <string>` — Тип электронного документа: act_of_acceptance — лист отгрузки, act_of_mismatch — акт о расхождениях, act_of_excess — акт об излишках, waybill — транспортная накладная.
 
 **Пример запроса:**
 
@@ -21717,7 +21747,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 Возвращает подробную информацию по всем начислениям. Максимальный период, за который можно получить информацию в одном запросе — 1 месяц. Если в запросе не указывать posting_number , то в ответе будут все отправления за указанный период или отправления определённого типа.
 
 **Тело запроса** (`application/json`):
-- **filter** — Фильтр.
+- **filter** `posting_number (object) or date (object)` — Фильтр.
 - **page** `integer <int64>` *обязательный* — Номер страницы, возвращаемой в запросе.
 - **page_size** `integer <int64>` *обязательный* — Количество элементов на странице.
 
@@ -21727,7 +21757,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 {
   "filter": {
     "date": {
-      "from": "2021-11-01T00:00:00.000 ",
+      "from": "2021-11-01T00:00:00.000Z",
       "to": "2021-11-02T00:00:00.000Z"
     },
     "operation_type": [],
@@ -21763,9 +21793,11 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
   "result": {
     "operations": [
       {
-        "operation_id": 1140118218784,
-        "operation_type": "Marketplac \"operation_date\": ",
-        "operation_type_name": "Услуг \"delivery_charge\": 0",
+        "operation_id": 11401182187840,
+        "operation_type": "MarketplaceMarketingActionCostOperation",
+        "operation_date": "2021-11-01 00:00:00",
+        "operation_type_name": "Услуги продвижения товаров",
+        "delivery_charge": 0,
         "return_delivery_charge": 0,
         "accruals_for_sale": 0,
         "sale_commission": 0,
@@ -23065,7 +23097,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 Доступно для продавцов с подпиской Управление отзывами или Premium Pro.
 
 **Тело запроса** (`application/json`):
-- **review_ids** `Array of strings` — Список идентификаторов отзывов.
+- **review_ids** `Array of strings [ 1 .. 100 ] items` — Список идентификаторов отзывов.
 - **status** `string` — Новый статус отзыва: NEW — новый; VIEWED — просмотренный; PROCESSED — обработанный.. Enum: `"NEW"`, `"VIEWED"`, `"PROCESSED"`.
 
 **Пример запроса:**
@@ -23636,7 +23668,8 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 ```json
 {
   "last_id": "",
-  "question_id": "019228a7-91d8-76af-a73a \"sku\": 646399170"
+  "question_id": "019228a7-91d8-76af-a73a-e989dfac7ac8",
+  "sku": 646399170
 }
 ```
 
@@ -23659,7 +23692,8 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
     {
       "author_name": "string",
       "id": "string",
-      "published_at": "2024-08-14T11:4 \"question_id\": \"string",
+      "published_at": "2024-08-14T11:44:35.352Z",
+      "question_id": "string",
       "sku": 646399170,
       "status_publication": "",
       "text": "string"
@@ -23776,10 +23810,10 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 - **author_name** `string` — Автор вопроса.
 - **id** `string` — Идентификатор вопроса.
 - **product_url** `string` — Ссылка на товар.
-- **published_at** — Дата публикации вопроса.
+- **published_at** `timestamp` — Дата публикации вопроса.
 - **question_link** `string` — Ссылка на вопрос.
 - **sku** `integer <int64>` — Идентификатор товара в системе Ozon — SKU.
-- **status** — Статус вопроса: NEW — новый, ALL — все вопросы, VIEWED — просмотренный, PROCESSED — обработанный, UNPROCESSED — необработанный.
+- **status** `enum` — Статус вопроса: NEW — новый, ALL — все вопросы, VIEWED — просмотренный, PROCESSED — обработанный, UNPROCESSED — необработанный.
 - **text** `string` — Текст вопроса.
 
 **Пример ответа (`200`):**
@@ -23788,10 +23822,13 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 {
   "answers_count": "0",
   "author_name": "Пользователь OZON",
-  "product_url": "https://www.ozon.ru/prod \"sku\": 646399170",
-  "id": "0192a009-769f-7ee9-b412-893045171 \"text\": \"Можно выбрать цвет?",
-  "question_link": "https://www.ozon.ru/p ",
-  "published_at": "2024-10-08T10:09:29.099 \"status\": \"VIEWED\""
+  "product_url": "",
+  "sku": 646399170,
+  "id": "0192a009-769f-7ee9-b412-893045171a66",
+  "text": "Можно выбрать цвет?",
+  "question_link": "",
+  "published_at": "2024-10-08T10:09:29.099284Z",
+  "status": "VIEWED"
 }
 ```
 
@@ -23833,7 +23870,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 | `default` | Ошибка |
 
 **Схема ответа (`200`):**
-- **questions** `Array of objects` — Вопросы.
+- **questions** `Array of objects [ 0 .. 10 ] items` — Вопросы.
 - **last_id** `string` — Идентификатор последнего значения на странице. Чтобы получить следующие значения, передайте полученное значение в следующем запросе в параметре last_id .
 - **has_next** `boolean` — true , если в ответе вернулись не все вопросы.
 
@@ -23932,68 +23969,6 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 
 Все методы требуют заголовки `Client-Id` (идентификатор клиента) и `Api-Key` (API-ключ), если явно не указано иное.
 
-### Получить информацию о стоках на складах FBO
-
-## Получить информацию о стоках на складах FBO
-
-`POST /v1/product/info/stocks-by-warehouse/fbo`
-
-Передайте в запросе offer_ids или skus . Вы можете оставить обратную связь по этому методу в комментариях к обсуждению в сообществе разработчиков Ozon for dev.
-
-**Тело запроса** (`application/json`):
-- **cursor** `string` — Указатель для выборки следующих данных.
-- **limit** `integer <uint64>` *обязательный* — Количество значений в ответе.
-- **offer_ids** `Array of strings` — Идентификатор товаров в системе продавца — артикул.
-- **skus** `Array of strings <int64>` — Идентификатор товаров в системе Ozon — SKU.
-
-**Пример запроса:**
-
-```json
-{
-  "cursor": "string",
-  "limit": 0,
-  "offer_ids": [
-    "string"
-  ],
-  "skus": [
-    "string"
-  ]
-}
-```
-
-**Ответы:**
-
-| Код | Описание |
-|---|---|
-| `200` | Информация о стоках. |
-| `default` | Ошибка. |
-
-**Схема ответа (`200`):**
-- **cursor** `string` — Указатель для выборки следующих данных.
-- **has_next** `boolean` — true , если в ответе вернулись не все значения.
-- **products** `Array of objects` — Остатки товаров FBO.
-
-**Пример ответа (`200`):**
-
-```json
-{
-  "cursor": "string",
-  "has_next": true,
-  "products": [
-    {
-      "offer_id": "string",
-      "present": 0,
-      "product_id": 0,
-      "reserved": 0,
-      "sku": 0,
-      "warehouse_id": 0
-    }
-  ]
-}
-```
-
-
----
 
 ## Управление остатками
 
@@ -24473,7 +24448,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 Возвращает информацию о скидке на товар в зависимости от его количества в заказе. Вы можете оставить обратную связь о работе метода в комментариях в сообществе разработчиков Ozon for dev.
 
 **Тело запроса** (`application/json`):
-- **skus** `Array of strings <int64>` *обязательный* — Список идентификаторов товара в системе Ozon — SKU.
+- **skus** `Array of strings <int64> <= 5000 items` *обязательный* — Список идентификаторов товара в системе Ozon — SKU.
 
 **Пример запроса:**
 
@@ -24669,7 +24644,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
   - **approved_quantity_max** `integer <uint64>` — Максимальное одобренное количество товаров.
   - **auto_moderated_info** `object` — Информация об автоматической модерации заявки.
   - **created_at** `string <date-time>` — Дата создания заявки.
-  - **edited_till** `string <date-time> YYYY-MM-DD` — Время для изменения решения.
+  - **edited_till** `string <date-time>` — Время для изменения решения.
   - **edited_till_duration** `integer <uint64>` — Время для изменения решения в секундах.
   - **email** `string` — Электронный адрес сотрудника продавца, который обработал заявку.
   - **end_at** `string <date-time>` — Время окончания действия заявки.
@@ -24929,7 +24904,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 Вы можете оставить обратную связь о работе метода в комментариях в сообществе разработчиков Ozon for dev.
 
 **Тело запроса** (`application/json`):
-- **posting_numbers** `Array of strings` *обязательный* — Номера отправлений.
+- **posting_numbers** `Array of strings [ 1 .. 200 ] items` *обязательный* — Номера отправлений.
 
 **Пример запроса:**
 
@@ -25027,7 +25002,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 Если укажете last_id в запросе, передайте значение date из предыдущего запроса, иначе вернётся ошибка 400 Bad Request . Вы можете оставить обратную связь о работе метода в комментариях в сообществе разработчиков Ozon for dev.
 
 **Тело запроса** (`application/json`):
-- **date** `string YYYY-MM-DD` *обязательный* — Дата начислений. Самая ранняя — 1 января 2022 года. Если укажете last_id , передайте значение date из предыдущего запроса.
+- **date** `string` *обязательный* — Дата начислений. Самая ранняя — 1 января 2022 года. Если укажете last_id , передайте значение date из предыдущего запроса. Формат даты: YYYY-MM-DD.
 - **last_id** `string` *обязательный* — Идентификатор последнего значения на странице. При первом запросе оставьте это поле пустым. Чтобы получить следующие значения, укажите last_id из ответа предыдущего запроса. Срок жизни идентификатора — 15 минут.
 
 **Пример запроса:**
@@ -25150,7 +25125,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 Вы можете оставить обратную связь о работе метода в комментариях в сообществе разработчиков Ozon for dev.
 
 **Тело запроса** (`application/json`):
-- **skus** `Array of strings <int64>` — Идентификаторы товаров в системе Ozon — SKU.
+- **skus** `Array of strings <int64> [ 1 .. 350 ] items` — Идентификаторы товаров в системе Ozon — SKU.
 
 **Пример запроса:**
 
@@ -25380,7 +25355,9 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 
 **Схема ответа (`200`):**
 - **option** `Array of objects` — Параметры для создания сертификата.
-  - **name** `string` *обязательный* — Название параметра сертификата: NAME — название; CERTIFICATE_TYPE — тип; NUMBER — номер; FILES — файл с сертификатом в кодировке Base64; CERTIFICATE_COUNTRY — страна выдачи; ACCORDANCE_TYPE — стандарт сертификации; SKUS — список идентификаторов товара в системе Ozon, SKU; ISSUE_DATE — дата выпуска; EXPIRED_DATE — дата истечения; LINK_TO_REGISTRY — ссылка на государственный реестр; PRODUCT_TYPE — тип товаров; INFINITE — бессрочность. true , если параметр обязательный.
+  - **name** `string` — Название параметра сертификата: NAME — название; CERTIFICATE_TYPE — тип; NUMBER — номер; FILES — файл с сертификатом в кодировке Base64; CERTIFICATE_COUNTRY — страна выдачи; ACCORDANCE_TYPE — стандарт сертификации; SKUS — список идентификаторов товара в системе Ozon, SKU; ISSUE_DATE — дата выпуска; EXPIRED_DATE — дата истечения; LINK_TO_REGISTRY — ссылка на государственный реестр; PRODUCT_TYPE — тип товаров; INFINITE — бессрочность.
+  - **required** `boolean` — true , если параметр обязательный.
+  - **variants** `Array of objects` — Список возможных значений.
 
 **Пример ответа (`200`):**
 
@@ -25389,7 +25366,13 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
   "option": [
     {
       "name": "string",
-      "required": true
+      "required": true,
+      "variants": [
+        {
+          "name": "string",
+          "value": "string"
+        }
+      ]
     }
   ]
 }
@@ -25412,21 +25395,21 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 ```json
 {
   "params": {
-    "accordance_type": "UNKNOWN",
-    "certificate_country": "st",
-    "certificate_type": "UNKNOWN",
+    "accordance_type": "SAFETY_DATA_SHEET",
+    "certificate_country": "RU",
+    "certificate_type": "SAFETY_DATA_SHEET",
     "expired_date": {
       "date": {
-        "day": 0,
-        "month": 0,
-        "year": 0
+        "day": 1,
+        "month": 1,
+        "year": 2027
       },
-      "infinite": true
+      "infinite": false
     },
     "files": [
       {
         "file_content": "string",
-        "name": "string"
+        "name": "file.pdf"
       }
     ],
     "issue_date": "2019-08-24T14:15:22Z",
@@ -25454,7 +25437,9 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 
 **Схема ответа (`200`):**
 - **params** `Array of objects` — Параметры для создания сертификата.
-  - **name** `string` *обязательный* — Название параметра сертификата: NAME — название; CERTIFICATE_TYPE — тип; NUMBER — номер; FILES — файл с сертификатом в кодировке Base64; CERTIFICATE_COUNTRY — страна выдачи; ACCORDANCE_TYPE — стандарт сертификации; SKUS — список идентификаторов товара в системе Ozon, SKU; ISSUE_DATE — дата выпуска; EXPIRED_DATE — дата истечения; LINK_TO_REGISTRY — ссылка на государственный реестр; PRODUCT_TYPE — тип товаров; INFINITE — бессрочность. true , если параметр обязательный.
+  - **name** `string` — Название параметра сертификата: NAME — название; CERTIFICATE_TYPE — тип; NUMBER — номер; FILES — файл с сертификатом в кодировке Base64; CERTIFICATE_COUNTRY — страна выдачи; ACCORDANCE_TYPE — стандарт сертификации; SKUS — список идентификаторов товара в системе Ozon, SKU; ISSUE_DATE — дата выпуска; EXPIRED_DATE — дата истечения; LINK_TO_REGISTRY — ссылка на государственный реестр; PRODUCT_TYPE — тип товаров; INFINITE — бессрочность.
+  - **required** `boolean` — true , если параметр обязательный.
+  - **variants** `Array of objects` — Список возможных значений.
 
 **Пример ответа (`200`):**
 
@@ -25463,7 +25448,13 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
   "params": [
     {
       "name": "string",
-      "required": true
+      "required": true,
+      "variants": [
+        {
+          "name": "string",
+          "value": "string"
+        }
+      ]
     }
   ]
 }
@@ -26273,7 +26264,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 **Тело запроса** (`application/json`):
 - **date_end** `string <date-time>` *обязательный* — Дата и время окончания акции.
 - **date_start** `string <date-time>` *обязательный* — Дата и время начала акции.
-- **discount_levels** `Array of objects` *обязательный* — Уровни скидки.
+- **discount_levels** `Array of objects [ 2 .. 4 ] items` *обязательный* — Уровни скидки.
 - **discount_type** `string` *обязательный* — Тип скидки: PERCENT — скидка в процентах; CURRENCY — скидка в валюте.. Enum: `"PERCENT"`, `"CURRENCY"`.
 - **is_legal_entities_segment** `boolean` — true , если акция только для юридических лиц.
 - **title** `string` — Название акции.
@@ -26661,8 +26652,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 
 **Тело запроса** (`application/json`):
 - **action_id** `integer <uint64>` *обязательный* — Идентификатор акции. Получите значение параметра методом /v1/seller-actions/list.
-- **products** `Array of action_price (object) or discount_percent (object)`
-  - **items** *обязательный* — Информация о товарах.
+- **products** `Array of action_price (object) or discount_percent (object) <= 100 items` *обязательный* — Информация о товарах.
 
 **Пример запроса:**
 
@@ -26771,7 +26761,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 
 **Тело запроса** (`application/json`):
 - **action_id** `integer <uint64>` *обязательный* — Идентификатор акции. Получите значение параметра методом /v1/seller-actions/list.
-- **skus** `Array of strings <uint64>` *обязательный* — Идентификаторы товаров в системе Ozon — SKU.
+- **skus** `Array of strings <uint64> <= 100 items` *обязательный* — Идентификаторы товаров в системе Ozon — SKU.
 
 **Пример запроса:**
 
@@ -26963,7 +26953,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 Вы можете оставить обратную связь о работе метода в комментариях в сообществе разработчиков Ozon for dev.
 
 **Тело запроса** (`application/json`):
-- **action_ids** `Array of strings <uint64>` — Идентификаторы акций.
+- **action_ids** `Array of strings <uint64> <= 100 items` — Идентификаторы акций.
 - **action_type** `Array of strings` — Механика акции: DISCOUNT — скидка; VOUCHER_DISCOUNT — скидка по промокоду; DISCOUNT_WITH_CONDITION — скидка от суммы заказа; INSTALLMENT — беспроцентная рассрочка; INDIVIDUAL_DISCOUNT_BY_PRODUCTS — бонусы продавца; OZON_ACCOUNT_DISCOUNT — повышенная скидка с картой Ozon Банка; MULTI_LEVEL_DISCOUNT_ON_AMOUNT — многоуровневая скидка от суммы.. Enum: `"DISCOUNT"`, `"VOUCHER_DISCOUNT"`, `"DISCOUNT_WITH_CONDITION"`, `"INSTALLMENT"`, `"INDIVIDUAL_DISCOUNT_BY_PRODUCTS"`, `"OZON_ACCOUNT_DISCOUNT"`, `"MULTI_LEVEL_DISCOUNT_ON_AMOUNT"`.
 - **limit** `integer <uint64>` *обязательный* — Количество значений на странице.
 - **offset** `integer <uint64>` — Количество элементов, которое будет пропущено в ответе. Например, если offset = 10 , то ответ начнётся с 11-го найденного элемента.
@@ -27260,7 +27250,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 **Тело запроса** (`application/json`):
 - **action_id** `integer <uint64>` — Идентификатор акции.
 - **auto_add_date** `string <date-time>` — Дата и время автодобавления товаров в акцию из параметра result.auto_add_dates в ответе метода /v1/actions.
-- **product_ids** `Array of strings <uint64>` — Идентификаторы товаров в системе Ozon — product_id .
+- **product_ids** `Array of strings <uint64> [ 1 .. 1000 ] items` — Идентификаторы товаров в системе Ozon — product_id .
 
 **Пример запроса:**
 
@@ -27760,7 +27750,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 Вы можете оставить обратную связь о работе метода в комментариях в сообществе разработчиков Ozon for dev.
 
 **Тело запроса** (`application/json`):
-- **supplies** `Array of objects` *обязательный* — Информация о поставках.
+- **supplies** `Array of objects <= 100 items` *обязательный* — Информация о поставках.
 
 **Пример запроса:**
 
@@ -28300,7 +28290,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 Вы можете оставить обратную связь о работе метода в комментариях в сообществе разработчиков Ozon for dev. Подробнее о работе с транспортными грузоместами
 
 **Тело запроса** (`application/json`):
-- **supply_ids** `Array of strings <int64>` *обязательный* — Список идентификаторов поставок.
+- **supply_ids** `Array of strings <int64> <= 50 items` *обязательный* — Список идентификаторов поставок.
 
 **Пример запроса:**
 
@@ -28470,7 +28460,7 @@ macrolocal_cluster_ids , иначе вернётся ошибка.
 
 **Тело запроса** (`application/json`):
 - **supply_id** `integer <int64>` *обязательный* — Идентификатор поставки. Получите значение параметра методом /v3/supply-order/get.
-- **transport_cargo_ids** `Array of strings <int64>` — Идентификаторы транспортных грузомест. Если ничего не передать, в ответе вернутся этикетки для всех транспортных грузомест в поставке.
+- **transport_cargo_ids** `Array of strings <int64> <= 40 items` — Идентификаторы транспортных грузомест. Если ничего не передать, в ответе вернутся этикетки для всех транспортных грузомест в поставке.
 
 **Пример запроса:**
 
@@ -33021,7 +33011,7 @@ date_from .
 Доступно для продавцов с подпиской Premium Pro.
 
 **Тело запроса** (`application/json`):
-- **skus** `Array of strings <int64>` *обязательный* — Список SKU.
+- **skus** `Array of strings <int64> [ 1 .. 1000 ] items` *обязательный* — Список SKU.
 
 **Пример запроса:**
 
@@ -33277,7 +33267,7 @@ date_from .
 Проверяет доступность доставки Ozon для покупателя. Не учитывает ограничения по сумме покупки, категории товаров и географии.
 
 **Тело запроса** (`application/json`):
-- **client_phone** `string 7XXXXXXXXXX` *обязательный* — Номер телефона покупателя.
+- **client_phone** `string` *обязательный* — Номер телефона покупателя. Укажите в формате 7XXXXXXXXXX.
 
 **Пример запроса:**
 
@@ -33318,7 +33308,7 @@ date_from .
 - **buyer_phone** `string` — Номер телефона покупателя.
 - **delivery_schema** `string` — Схема доставки: MIX — на выбор Ozon; FBO — FBO; FBS — FBS.. Enum: `"MIX"`, `"FBO"`, `"FBS"`.
 - **delivery_type** `object` — Способ доставки.
-- **items** `Array of objects` — Информация о товарах.
+- **items** `Array of objects <= 1000 items` — Информация о товарах.
 
 **Пример запроса:**
 
@@ -33492,7 +33482,7 @@ date_from .
 Возвращает подробную информацию о точке самовывоза для пользователя.
 
 **Тело запроса** (`application/json`):
-- **map_point_ids** `Array of strings <int64>` — Идентификаторы точек на карте.
+- **map_point_ids** `Array of strings <int64> <= 100 items` — Идентификаторы точек на карте.
 
 **Пример запроса:**
 
@@ -33784,7 +33774,7 @@ date_from .
 
 **Тело запроса** (`application/json`):
 - **buyer** `object` *обязательный* — Информация о покупателе.
-- **delivery** *обязательный* — Информация о доставке.
+- **delivery** `courier (object) or pick_up (object)` *обязательный* — Информация о доставке.
 - **delivery_schema** `string` *обязательный* — Схема доставки: MIX — на выбор Ozon; FBO — FBO; FBS — FBS.. Enum: `"MIX"`, `"FBO"`, `"FBS"`.
 - **recipient** `object` *обязательный* — Информация о получателе.
 - **splits** `Array of objects` *обязательный* — Информация об отправлениях в заказе.
@@ -33799,45 +33789,45 @@ date_from .
     "middle_name": "string",
     "phone": "string"
   },
-  "delivery": {
-    "delivery_schema": "MIX",
-    "recipient": {
-      "recipient_first_name": "string",
-      "recipient_last_name": "string",
-      "recipient_middle_name": "string",
-      "recipient_phone": "string"
-    },
-    "splits": [
-      {
-        "delivery_method": {
-          "delivery_method_id": 0,
-          "delivery_type": "COURIER",
-          "logistic_date_range": {
-            "from": "2019-08-24T14:15 ",
-            "to": "2019-08-24T14:15:2"
-          },
+  "delivery": {},
+  "delivery_schema": "MIX",
+  "recipient": {
+    "recipient_first_name": "string",
+    "recipient_last_name": "string",
+    "recipient_middle_name": "string",
+    "recipient_phone": "string"
+  },
+  "splits": [
+    {
+      "delivery_method": {
+        "delivery_method_id": 0,
+        "delivery_type": "COURIER",
+        "logistic_date_range": {
+          "from": "2019-08-24T14:15:22Z",
+          "to": "2019-08-24T14:15:22Z"
+        },
+        "price": {
+          "currency_code": "string",
+          "nanos": 0,
+          "units": 0
+        },
+        "timeslot_id": 0
+      },
+      "items": [
+        {
+          "offer_id": "string",
           "price": {
             "currency_code": "string",
             "nanos": 0,
             "units": 0
           },
-          "timeslot_id": 0
-        },
-        "items": [
-          {
-            "offer_id": "string",
-            "price": {
-              "currency_code": "stri \"nanos\": 0",
-              "units": 0
-            },
-            "quantity": 0,
-            "sku": 0
-          }
-        ],
-        "warehouse_id": 0
-      }
-    ]
-  }
+          "quantity": 0,
+          "sku": 0
+        }
+      ],
+      "warehouse_id": 0
+    }
+  ]
 }
 ```
 

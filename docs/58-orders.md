@@ -153,7 +153,7 @@
 
 **Тело запроса** (`application/json`):
 - **buyer** `object` *обязательный* — Информация о покупателе.
-- **delivery** *обязательный* — Информация о доставке.
+- **delivery** `courier (object) or pick_up (object)` *обязательный* — Информация о доставке.
 - **delivery_schema** `string` *обязательный* — Схема доставки: MIX — на выбор Ozon; FBO — FBO; FBS — FBS.. Enum: `"MIX"`, `"FBO"`, `"FBS"`.
 - **recipient** `object` *обязательный* — Информация о получателе.
 - **splits** `Array of objects` *обязательный* — Информация об отправлениях в заказе.
@@ -168,45 +168,45 @@
     "middle_name": "string",
     "phone": "string"
   },
-  "delivery": {
-    "delivery_schema": "MIX",
-    "recipient": {
-      "recipient_first_name": "string",
-      "recipient_last_name": "string",
-      "recipient_middle_name": "string",
-      "recipient_phone": "string"
-    },
-    "splits": [
-      {
-        "delivery_method": {
-          "delivery_method_id": 0,
-          "delivery_type": "COURIER",
-          "logistic_date_range": {
-            "from": "2019-08-24T14:15 ",
-            "to": "2019-08-24T14:15:2"
-          },
+  "delivery": {},
+  "delivery_schema": "MIX",
+  "recipient": {
+    "recipient_first_name": "string",
+    "recipient_last_name": "string",
+    "recipient_middle_name": "string",
+    "recipient_phone": "string"
+  },
+  "splits": [
+    {
+      "delivery_method": {
+        "delivery_method_id": 0,
+        "delivery_type": "COURIER",
+        "logistic_date_range": {
+          "from": "2019-08-24T14:15:22Z",
+          "to": "2019-08-24T14:15:22Z"
+        },
+        "price": {
+          "currency_code": "string",
+          "nanos": 0,
+          "units": 0
+        },
+        "timeslot_id": 0
+      },
+      "items": [
+        {
+          "offer_id": "string",
           "price": {
             "currency_code": "string",
             "nanos": 0,
             "units": 0
           },
-          "timeslot_id": 0
-        },
-        "items": [
-          {
-            "offer_id": "string",
-            "price": {
-              "currency_code": "stri \"nanos\": 0",
-              "units": 0
-            },
-            "quantity": 0,
-            "sku": 0
-          }
-        ],
-        "warehouse_id": 0
-      }
-    ]
-  }
+          "quantity": 0,
+          "sku": 0
+        }
+      ],
+      "warehouse_id": 0
+    }
+  ]
 }
 ```
 
