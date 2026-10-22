@@ -1125,11 +1125,11 @@
 
 ---
 
-## Получить PDF с этикетками грузовых мест
+## Получить PDF с этикетками грузовых мест — метод отключён
 
 `GET /v1/cargoes-label/file/{file_guid}`
 
-> **Примечание:** 10 апреля 2026 года отключим метод. Переключитесь на
+> **Примечание:** 10 апреля 2026 года метод был отключён и удалён из актуальной документации Ozon Seller API. Для получения этикеток используйте методы /v1/cargoes-label/create и /v1/cargoes-label/get (сверено с живой документацией docs.ozon.ru от 22.10.2026).
 
 **Ответы:**
 
@@ -1432,6 +1432,67 @@
     "total_approved_volume_in_litres": 0,
     "total_rejected_item_count": 0,
     "total_restricted_item_count": 0
+  }
+}
+```
+
+
+---
+
+## Получить информацию о выполнении плана отгрузок
+
+`POST /v1/supply-order/shipment-plan-compliance/get`
+
+Вы можете оставить обратную связь о работе метода в комментариях в сообществе разработчиков Ozon for dev. Метод возвращает информацию о выполнении плана отгрузок: процент выполнения, период расчёта и ограничения.
+
+**Ответы:**
+
+| Код | Описание |
+|---|---|
+| `200` | Информация о выполнении плана отгрузок |
+| `400` | Неверный параметр |
+| `403` | Доступ запрещён |
+| `404` | Ответ не найден |
+| `409` | Конфликт запроса |
+| `500` | Внутренняя ошибка сервера |
+
+**Схема ответа (`200`):**
+- **compliance_rate_percent** `integer <int32>` — Процент выполнения плана отгрузок.
+- **interval_days** `integer <int32>` — Период в днях, за который рассчитывается процент выполнения плана.
+- **min_compliance_percent** `integer <int32>` — Минимальный процент выполнения плана отгрузок.
+- **rate_details** `object` — Информация об отгруженных товарах.
+  - **max_total_quantity_sum** `integer <int32>` — Максимально допустимое суммарное количество товаров.
+  - **total_quantity_sum** `integer <int32>` — Суммарное количество отгруженных товаров.
+- **restrictions** `object` — Информация об ограничениях.
+  - **is_restriction_active** `boolean` — Активно ли ограничение.
+  - **max_total_quantity_to_supply** `object` — Ограничение на суммарное количество товаров в поставке.
+    - **applicability** `string` — Применимость ограничения: `ENABLED` , `DISABLED` .
+    - **limit** `integer <int32>` — Лимит.
+  - **timeslot_change** `object` — Ограничение на изменение таймслота.
+    - **applicability** `string` — Применимость ограничения: `ENABLED` , `DISABLED` .
+    - **change_limit** `integer <int32>` — Количество изменений.
+
+**Пример ответа (`200`):**
+
+```json
+{
+  "compliance_rate_percent": 0,
+  "interval_days": 0,
+  "min_compliance_percent": 0,
+  "rate_details": {
+    "max_total_quantity_sum": 0,
+    "total_quantity_sum": 0
+  },
+  "restrictions": {
+    "is_restriction_active": true,
+    "max_total_quantity_to_supply": {
+      "applicability": "DISABLED",
+      "limit": 0
+    },
+    "timeslot_change": {
+      "applicability": "DISABLED",
+      "change_limit": 0
+    }
   }
 }
 ```
